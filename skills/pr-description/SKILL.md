@@ -9,6 +9,24 @@ Produce the PR description in our company-standard shape so reviewers get contex
 the project. A good description makes review fast and cheap: the reviewer sees *what* changed, *where*,
 and *why*, plus anything to watch. This mirrors `.github/pull_request_template.md`.
 
+## Scope — read-only, never modify the repo
+
+This skill's entire job is to READ the git state and PRODUCE description text. It must not change the
+project. This matters especially because the skill usually runs right after a commit, when the agent
+was just editing code — switch fully out of edit mode now.
+
+- Do NOT edit, create, move, delete, or stage any file in the working tree — not code, not configs,
+  not the PR template, nothing.
+- Do NOT "fix," refactor, or clean up anything you notice in the diff. If the diff reveals a bug,
+  typo, or risky change, describe it under NOTES — flagging it *is* the deliverable, fixing it is not.
+- Do NOT run any state-changing git command: no `add`, `commit`, `commit --amend`, `push`,
+  `restore`, `checkout`, `reset`, or `stash`. Use read-only commands only: `git diff`, `git log`,
+  `git status`, `git branch`, and `scripts/changes-table.sh`.
+- The only file you may write is a throwaway body file for `gh` (see the end), and it must live
+  OUTSIDE the repo (via `mktemp`), never inside the working tree.
+
+The deliverable is the markdown description — text, not a change to the codebase.
+
 ## Output format — ALWAYS use this exact structure
 
 ```markdown
@@ -45,6 +63,10 @@ Don't fetch the ticket's contents — just build the link from the key. For the 
 diff and the user's description; if you need more context, ask.
 
 ### CHANGES table
+If the change is **trivial** (see Type below), skip the full table — a one-line summary of what
+changed is enough (e.g. `Updated \`config.yml\` to bump the timeout.`). Only build the full table for
+**substantial** changes.
+
 Run the helper to get a table skeleton from the actual diff, then fill the "what & why" per row:
 
 ```bash
@@ -96,10 +118,18 @@ Backoff cap is 30s; if the endpoint starts rate-limiting we may want a jitter fo
 ```
 
 ## If `gh` is available
-After composing the description, you can open the PR with it:
+
+Opening a PR is a side effect, so only do it when the user actually asked to (e.g. "open the PR" or
+they ran `gh pr create`). If they only wanted the description, print the markdown and stop — don't
+create anything.
+
+When you do open it, write the body to a temp file OUTSIDE the repo so the working tree stays clean:
 
 ```bash
-gh pr create --title "PROJ-XXX: <concise title>" --body-file <file>
+body="$(mktemp)"     # e.g. /tmp/tmp.XXXXXX — never a path inside the repo
+# write the composed description into "$body"
+gh pr create --title "PROJ-XXX: <concise title>" --body-file "$body"
+rm -f "$body"
 ```
 
 Keep the PR title prefixed with the Jira key — a CI check requires it.

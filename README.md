@@ -47,4 +47,3 @@ synterra-skills/
 ```
 
 Add a new shared skill by dropping another folder under `skills/` and committing it.
-# synterra-ai-toolkit
