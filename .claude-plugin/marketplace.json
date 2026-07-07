@@ -1,0 +1,15 @@
+{
+  "name": "synterra-marketplace",
+  "owner": {
+    "name": "Synterra Engineering",
+    "email": "admin@synterra.software"
+  },
+  "plugins": [
+    {
+      "name": "synterra-dev",
+      "source": ".",
+      "description": "Synterra shared engineering skills",
+      "version": "0.1.0"
+    }
+  ]
+}

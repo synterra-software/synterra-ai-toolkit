@@ -1,0 +1,10 @@
+{
+  "name": "synterra-dev",
+  "description": "Synterra shared engineering skills. Ships the pr-description skill (standardized PR descriptions in the WHAT / CHANGES / NOTES / Type format).",
+  "version": "0.1.0",
+  "author": {
+    "name": "Synterra Engineering",
+    "email": "admin@synterra.software"
+  },
+  "keywords": ["pr", "pull-request", "git", "workflow"]
+}
