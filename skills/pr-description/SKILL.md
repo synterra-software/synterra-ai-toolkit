@@ -81,6 +81,19 @@ Then refine the skeleton:
   the reason, e.g. "add retry with backoff to the upload call" — not "changed uploader.ts".
 - Keep each cell to one line.
 
+If the table ends up large or hard to scan (many rows, e.g. touching 15+ files), drop the per-file
+table and group by area/directory instead — a short bulleted list with one line per area and the key
+change, e.g.:
+
+```markdown
+## CHANGES
+- **`src/services/`** — add retry-with-backoff to uploads; propagate cancellation to in-flight requests
+- **`src/components/upload/`** — surface retry state in the progress UI
+- **tests** — cover retry, max-attempts, and give-up paths
+```
+
+Keep it to the handful of areas that matter — this is still a map for the reviewer, not a full file list.
+
 ### Summary (WHAT)
 1–3 sentences describing the change and its purpose. For frontend work, remind the author to attach UI
 screenshots (the skill can't produce them).
