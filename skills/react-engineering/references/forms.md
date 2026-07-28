@@ -11,6 +11,23 @@
 - Reuse the repository's compatible field integration. Otherwise use a maintained recommended integration or a thin adapter.
 - React Hook Form owns the draft. The server-state layer owns submitted data.
 
+## Example
+
+```tsx
+const { control, register, handleSubmit } = useForm<Values>({ defaultValues });
+
+<input {...register("email", { required: "Required" })} />
+
+<Controller
+  control={control}
+  name="country"
+  rules={{ required: "Required" }}
+  render={({ field, fieldState }) => (
+    <Select {...field} error={!!fieldState.error} helperText={fieldState.error?.message} />
+  )}
+/>
+```
+
 ## Check
 
 Test validation, submission, backend errors, dirty state, reset, and pending behavior that apply.
