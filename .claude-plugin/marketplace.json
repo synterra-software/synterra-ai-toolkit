@@ -8,8 +8,8 @@
     {
       "name": "synterra-dev",
       "source": ".",
-      "description": "Synterra shared engineering skills",
-      "version": "0.1.3"
+      "description": "Synterra shared engineering skills: software, frontend, and React engineering plus standardized PR descriptions",
+      "version": "0.2.0"
     }
   ]
 }
