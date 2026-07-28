@@ -8,18 +8,18 @@ Define the stable frontend foundations shared across capabilities and product ar
 
 Frontend platform responsibilities may include:
 
-- Application shell
-- Routing infrastructure
-- API client infrastructure
-- Authentication and session infrastructure
-- Design tokens and foundational UI primitives
-- State and caching infrastructure
-- Internationalization infrastructure
-- Error reporting and observability
-- Testing infrastructure
-- Accessibility foundations
-- Performance instrumentation
-- Stable contracts and extension points
+- Application shell: root layout, navigation chrome, global providers, error boundaries
+- Routing: route structure, guards, lazy-loaded route modules, URL conventions
+- API client setup: HTTP or GraphQL client configuration, interceptors, generated-client wiring
+- Authentication and session: token refresh, protected routes, session context
+- Design tokens and UI primitives: theme, typography, spacing, base components
+- State and server-cache setup: store configuration, query-client defaults, cache policies
+- Internationalization: locale loading, message catalogs, date and number formatting
+- Error reporting and monitoring: crash reporting, web vitals, frontend logging
+- Testing setup: runners, render helpers, network mocks, E2E harness
+- Accessibility foundations: focus management, landmarks, keyboard and ARIA conventions
+- Performance: bundling, code splitting, asset loading, instrumentation
+- Stable contracts and extension points for capabilities and product areas
 
 These are platform concerns only when they provide a broadly shared foundation rather than support one product flow.
 
