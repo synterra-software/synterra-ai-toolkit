@@ -11,8 +11,9 @@ Apply `software-engineering` and `frontend-engineering` first. Preserve the exis
 
 - Modal: [Modals](references/modals.md)
 - User input or form: [Forms](references/forms.md)
-- Hooks, Effects, requests, memoization: [Hooks](references/hooks.md)
-- Components, props, TypeScript: [TypeScript Components](references/typescript-components.md)
+- Hooks, Effects, requests, `useMemo`, `useCallback`: [Hooks](references/hooks.md)
+- Components, props, `memo`: [Components](references/components.md)
+- TypeScript types and safety: [TypeScript](references/typescript.md)
 - Client or server state: [State and Server Data](references/state-and-server-data.md)
 - Backend or generated API integration: [API Boundary](references/api-boundary.md)
 - React refactoring: [Refactoring](references/refactoring.md)

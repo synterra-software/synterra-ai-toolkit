@@ -34,13 +34,13 @@ useEffect(() => { setDraft(item); }, [item]);
 <ItemEditor key={item.id} initialItem={item} />
 ```
 
-## Memoization
+## Memoization Hooks
 
 - Use `useMemo` only for measured expensive pure work or required stable identity.
 - Use `useCallback` only for a memoized child, Hook dependency, stable Hook API, or identity contract. A function prop alone is insufficient.
 - Never memoize for correctness, side effects, cheap work, or routine handlers.
-- If React Compiler provides the optimization, do not add manual `memo`, `useMemo`, or `useCallback`.
+- If React Compiler provides the optimization, do not add manual `useMemo` or `useCallback`.
 
 ## Check
 
-Name each Effect's external system and each memoization's consumer or measured benefit.
+Name each Effect's external system and each memoization Hook's consumer or measured benefit.

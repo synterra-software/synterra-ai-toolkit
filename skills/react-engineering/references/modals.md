@@ -21,7 +21,7 @@ const ConfirmDeleteModal = NiceModal.create<{ name: string }>(({ name }) => {
   );
 });
 
-// Caller — no local open/close state:
+// Caller: no local open/close state.
 const confirmed = await NiceModal.show(ConfirmDeleteModal, { name: item.name });
 ```
 

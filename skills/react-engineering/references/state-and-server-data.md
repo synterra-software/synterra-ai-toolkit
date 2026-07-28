@@ -5,8 +5,8 @@
 - Computable: derive during rendering.
 - Component-only: local state or reducer.
 - Form draft: React Hook Form.
-- Stable cross-tree: context.
-- Shared client interaction: existing store with focused selectors.
+- Stable, infrequently changed cross-tree: context.
+- Frequently changed shared client interaction: existing store with focused selectors.
 - Backend-owned: existing server-state cache.
 
 Never mirror backend entities. Drafts, payloads, optimistic layers, and rollback snapshots are temporary. Define sync ownership for offline or editor copies.
@@ -25,6 +25,18 @@ Never mirror backend entities. Drafts, payloads, optimistic layers, and rollback
 - Optimistically update, reconcile the server result, and roll back failure.
 - Refresh only affected data; respect identity, pagination, ordering, and filters.
 - Real-time events update the same cache.
+
+## Example
+
+```tsx
+// ❌ backend entity mirrored into local state — two owners
+const { data } = useTodosQuery();
+const [todos, setTodos] = useState(data);
+
+// ✅ cache owns the data; derive the rest during render
+const { data: todos } = useTodosQuery();
+const visible = todos.filter((t) => !t.done);
+```
 
 ## Check
 

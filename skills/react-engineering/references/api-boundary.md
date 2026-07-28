@@ -11,6 +11,16 @@
 - Keep authentication, transport configuration, and middleware outside components.
 - Add no pass-through abstraction without a boundary to protect.
 
+## Example
+
+```tsx
+// ❌ transport client inside the component
+const user = await generatedApi.getUser(id);
+
+// ✅ application hook owns mapping, cache policy, and errors
+const { data: user } = useUser(id); // wraps the generated client in the data layer
+```
+
 ## Check
 
 Regenerate successfully and test the application boundary's loading, success, and error paths.
