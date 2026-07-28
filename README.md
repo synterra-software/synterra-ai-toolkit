@@ -7,6 +7,7 @@ Shared agent skills for the Synterra engineering team. One repo, every dev pulls
 - **pr-description**: generates PR descriptions in the standard WHAT / CHANGES / NOTES / Type format.
 - **software-engineering**: guides specification, ownership, implementation, and verification decisions.
 - **frontend-engineering**: applies those decisions to frontend work using the existing framework and stack.
+- **react-engineering**: standardizes React modals, forms, state ownership, optimistic updates, and generated API boundaries.
 
 ## Automatic repository installation
 
@@ -53,6 +54,7 @@ Requirements:
   `software-engineering` skill.
 - For frontend application work, load and follow both `software-engineering` and
   `frontend-engineering`.
+- For React application work, also load and follow `react-engineering`.
 - When preparing, opening, or updating a pull request, load and follow `pr-description`.
 - Treat these skill requirements as mandatory repository instructions.
 <!-- synterra-ai-toolkit:end -->
