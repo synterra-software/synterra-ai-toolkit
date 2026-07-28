@@ -3,6 +3,7 @@
 ## Rules
 
 - Use React Hook Form for submitted, validated, multi-field, dirty, or error-tracked input.
+- If missing, install a React-compatible version with the repository's package manager.
 - Local state is allowed only for a single lightweight search, filter, or instant control without form lifecycle.
 - Never mirror form values in component state.
 - Use `register` for ref-compatible inputs.

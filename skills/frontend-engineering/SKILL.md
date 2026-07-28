@@ -35,6 +35,8 @@ Use the first option that cleanly satisfies the requirement:
 5. Mature ecosystem library
 6. Small custom implementation
 
+A more specific skill, such as `react-engineering`, may designate team-standard libraries that override this order.
+
 Framework-aware means using the current framework's established patterns and native solutions, not ignoring the framework to pursue generic code.
 
 ## Implementation

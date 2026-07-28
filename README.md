@@ -6,13 +6,38 @@ Shared agent skills for the Synterra engineering team. One repo, every dev pulls
 
 - **pr-description**: generates PR descriptions in the standard WHAT / CHANGES / NOTES / Type format.
 - **software-engineering**: guides specification, ownership, implementation, and verification decisions.
-- **software-testing**: defines unit, component integration, and end-to-end coverage for changed behavior.
 - **frontend-engineering**: applies those decisions to frontend work using the existing framework and stack.
 - **react-engineering**: standardizes React modals, forms, state ownership, optimistic updates, and generated API boundaries.
 
+## Install as a Claude Code plugin (recommended)
+
+Inside Claude Code run:
+
+```
+/plugin marketplace add synterra-software/synterra-ai-toolkit
+/plugin install synterra-dev@synterra-marketplace
+```
+
+All skills ship with the plugin; updates arrive via `/plugin marketplace update`.
+
+To roll the plugin out to a whole team, commit this to each product repository's
+`.claude/settings.json`. Members are prompted to install it when they trust the folder:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "synterra-marketplace": {
+      "source": { "source": "github", "repo": "synterra-software/synterra-ai-toolkit" }
+    }
+  },
+  "enabledPlugins": { "synterra-dev@synterra-marketplace": true }
+}
+```
+
 ## Automatic repository installation
 
-Open the target repository in your coding agent, then copy and paste this entire prompt:
+For agents without Claude Code plugin support (Codex and other Agent Skills runtimes), open the
+target repository in your coding agent, then copy and paste this entire prompt:
 
 ```text
 Install the Synterra AI Toolkit into the repository you are currently working in.
@@ -53,7 +78,6 @@ Requirements:
 
 - Before planning, implementing, reviewing, or changing software, load and follow the
   `software-engineering` skill.
-- For implementation, refactoring, bug fixes, or test work, load and follow `software-testing`.
 - For frontend application work, load and follow both `software-engineering` and
   `frontend-engineering`.
 - For React application work, also load and follow `react-engineering`.
@@ -76,11 +100,11 @@ Finish by summarizing what was installed, which instruction files were updated, 
 manual follow-up required.
 ```
 
-## Setup (one-time, per dev)
+## Manual setup (one-time, per dev)
 
 ```
-git clone <your-org>/synterra-skills
-cd synterra-skills
+git clone https://github.com/synterra-software/synterra-ai-toolkit.git
+cd synterra-ai-toolkit
 ```
 
 Install each folder under `skills/` in your agent's user-level skills directory. Link the folder to
@@ -102,9 +126,10 @@ Claude Code.
 ## Updating
 
 ```
-cd <path-to-synterra-skills> && git pull
+cd <path-to-synterra-ai-toolkit> && git pull
 ```
 
+Plugin installs update with `/plugin marketplace update`.
 Symlinked skills receive updates immediately after `git pull`. Copied skills must be copied again.
 Claude Code users only need to re-run `./install.sh` when a **new** skill folder is added.
 
@@ -121,13 +146,17 @@ Claude Code users only need to re-run `./install.sh` when a **new** skill folder
 ## Layout
 
 ```
-synterra-skills/
+synterra-ai-toolkit/
+├── .claude-plugin/        # plugin + marketplace manifests
 ├── install.sh
 └── skills/
-    └── pr-description/
-        ├── SKILL.md
-        └── scripts/
-            └── changes-table.sh
+    ├── pr-description/
+    ├── software-engineering/
+    ├── frontend-engineering/
+    └── react-engineering/
 ```
 
-Add a new shared skill by dropping another folder under `skills/` and committing it.
+Each skill folder contains `SKILL.md` plus optional `references/` and `scripts/`.
+
+Add a new shared skill by dropping another folder under `skills/` and bumping the plugin version
+in `.claude-plugin/` so plugin users receive it.

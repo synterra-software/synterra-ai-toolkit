@@ -26,4 +26,4 @@ Apply the `software-engineering` refactoring workflow first.
 
 ## Check
 
-Run strict types, lint, tests, core coverage, and build; confirm unchanged behavior and contracts.
+Run strict types, lint, tests, and build; confirm unchanged behavior and contracts.

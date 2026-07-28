@@ -1,11 +1,11 @@
 ---
 name: react-engineering
-description: Use for React and TypeScript components, hooks, modals, forms, state, server data, API clients, and refactoring.
+description: Use for React and TypeScript components, hooks, memoization, modals (NiceModal), forms (React Hook Form), state, server data, optimistic updates, generated API clients, and refactoring.
 ---
 
 # React Engineering
 
-Apply `software-engineering`, `software-testing`, and `frontend-engineering` first. Preserve the existing stack, check current official docs, and change only requested or new code.
+Apply `software-engineering` and `frontend-engineering` first. Preserve the existing stack, check current official docs, and change only requested or new code.
 
 ## Read Before Work
 
@@ -21,13 +21,14 @@ Read every matching reference.
 
 ## Non-Negotiable
 
-- New modals use NiceModal. New data-entry flows use React Hook Form.
+- New modals use NiceModal. New data-entry flows use React Hook Form. These team standards
+  override the frontend reuse order; install either if missing.
 - Use typed functional components. Memoize only for a concrete benefit.
 - Effects only synchronize external systems; never issue requests from them.
 - Give every value one owner. Keep backend data in the existing server-state cache.
 - Never edit generated API code.
 - Do not migrate existing code unless requested.
-- Cover affected client workflows with E2E tests under `software-testing`.
+- Test changed behavior following the repository's existing testing practices.
 
 ## Check
 

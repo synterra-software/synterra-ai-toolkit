@@ -5,9 +5,8 @@ Refactoring preserves behavior unless the task explicitly changes it.
 ## Baseline
 
 - Read architecture and structure; identify behavior, responsibilities, contracts, and dependency direction.
-- Run tests, types, lint, build, and coverage; characterize unprotected behavior before editing.
-- Core/domain modules require at least 90% line and branch unit-test coverage in any ownership tier.
-- Test critical business invariants explicitly; coverage alone is insufficient.
+- Run tests, types, lint, and build; characterize unprotected behavior before editing.
+- Follow the repository's existing testing practices and coverage expectations.
 
 ## Structure
 
@@ -22,4 +21,4 @@ Refactoring preserves behavior unless the task explicitly changes it.
 
 - Refactor in small verified steps.
 - Exclude unrelated behavior, formatting, and speculative abstractions.
-- Finish with full checks, coverage, and contract and dependency review.
+- Finish with full checks and contract and dependency review.

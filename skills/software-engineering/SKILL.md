@@ -38,7 +38,6 @@ Read [Refactoring](references/refactoring.md) before any behavior-preserving res
 
 ## Implementation
 
-- Apply `software-testing` for changed behavior, regressions, and refactoring.
 - Prefer existing capabilities, dependencies, and established solutions over custom infrastructure.
 - Implement at the most product-specific level that can own the behavior cleanly.
 - Avoid speculative abstractions and flexibility without a current requirement.
@@ -47,7 +46,7 @@ Read [Refactoring](references/refactoring.md) before any behavior-preserving res
 
 ## Verification
 
-- Follow `software-testing`; keep affected existing tests current.
+- Follow the repository's existing testing practices; keep affected existing tests current.
 - Verify observable behavior, not only implementation details.
 - Run the narrowest relevant checks, then any broader checks needed for affected contracts.
 - Compare results with the acceptance criteria and report anything that was not verified.
