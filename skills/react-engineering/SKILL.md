@@ -1,50 +1,34 @@
 ---
 name: react-engineering
-description: Use when planning, implementing, or reviewing any React and TypeScript application change, especially work involving components, hooks, memoization, NiceModal modals, React Hook Form forms, state, server caches, optimistic updates, or generated API clients.
+description: Use for React and TypeScript components, hooks, modals, forms, state, server data, API clients, and refactoring.
 ---
 
 # React Engineering
 
-## Purpose
+Apply `software-engineering`, `software-testing`, and `frontend-engineering` first. Preserve the existing stack, check current official docs, and change only requested or new code.
 
-Apply consistent React patterns while preserving the repository's existing framework, UI library, data client, state tools, and generated API boundary.
+## Read Before Work
 
-## Relationship to Other Skills
+- Modal: [Modals](references/modals.md)
+- User input or form: [Forms](references/forms.md)
+- Hooks, Effects, requests, memoization: [Hooks](references/hooks.md)
+- Components, props, TypeScript: [TypeScript Components](references/typescript-components.md)
+- Client or server state: [State and Server Data](references/state-and-server-data.md)
+- Backend or generated API integration: [API Boundary](references/api-boundary.md)
+- React refactoring: [Refactoring](references/refactoring.md)
 
-Apply `software-engineering` and `frontend-engineering` first. This skill adds React-specific rules without replacing their guidance on scope, ownership, reuse, or verification.
+Read every matching reference.
 
-## Before Implementation
+## Non-Negotiable
 
-- Inspect the React version, framework, package manager, application shell, providers, UI library, form patterns, client-state tools, server-state client, and API generation setup.
-- Follow established repository conventions unless a React-specific rule requires a focused addition.
-- Consult current official documentation for the installed or target versions before integrating a library.
-- Apply these rules to new or explicitly changed code. Do not migrate working implementations outside the requested scope.
+- New modals use NiceModal. New data-entry flows use React Hook Form.
+- Use typed functional components. Memoize only for a concrete benefit.
+- Effects only synchronize external systems; never issue requests from them.
+- Give every value one owner. Keep backend data in the existing server-state cache.
+- Never edit generated API code.
+- Do not migrate existing code unless requested.
+- Cover affected client workflows with E2E tests under `software-testing`.
 
-## Required References
+## Check
 
-Read every reference relevant to the task before planning or implementation:
-
-- For a new or changed modal, read [Modals](references/modals.md).
-- For user input or a form, read [Forms](references/forms.md).
-- For React hooks, Effects, requests, or memoization, read [React Hooks](references/hooks.md).
-- For TypeScript components, props, composition, or component memoization, read [TypeScript Components](references/typescript-components.md).
-- For local, shared, server, optimistic, subscription, or offline state, read [State and Server Data](references/state-and-server-data.md).
-- For backend integration, generated clients, GraphQL, REST, OpenAPI, or Swagger, read [API Boundary](references/api-boundary.md).
-
-Read multiple references when a task crosses those concerns.
-
-## Core Invariants
-
-- Build new modals with NiceModal and new data-entry flows with React Hook Form.
-- Write new components as typed functional components and memoize them only for a concrete benefit.
-- Use Effects only to synchronize with external systems, never to issue application queries or mutations.
-- Add `useMemo` or `useCallback` only when memoization has a concrete benefit or identity requirement.
-- Give each state value one authoritative owner. Never maintain backend-owned data in parallel stores.
-- Keep backend data in the repository's established server-state cache, independent of the chosen library.
-- Never edit generated API code manually.
-- Do not rewrite existing modals or unrelated React architecture unless the task explicitly requests it.
-
-## Verification
-
-- Re-read the applicable references and verify every relevant rule against the implementation.
-- Run the narrowest relevant tests, type checks, linting, and build checks for the changed React area.
+Apply every matching rule, then run relevant tests, type checks, linting, and builds.

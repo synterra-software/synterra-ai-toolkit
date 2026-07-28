@@ -1,6 +1,6 @@
 ---
 name: software-engineering
-description: Use when planning, specifying, architecting, implementing, or reviewing software changes that require decisions about scope, ownership, reuse, or verification.
+description: Use when planning, specifying, architecting, implementing, refactoring, or reviewing software changes involving scope, ownership, reuse, or verification.
 ---
 
 # Software Engineering
@@ -32,8 +32,13 @@ Match specification depth to task complexity. Use a short behavior-focused speci
 
 Classify ownership as platform, capability, or product. Most feature work belongs at the product level. Read [Development Model](references/development-model.md) when selecting an ownership tier or considering reuse.
 
+## Refactoring
+
+Read [Refactoring](references/refactoring.md) before any behavior-preserving restructuring, cleanup, decomposition, or dead-code removal.
+
 ## Implementation
 
+- Apply `software-testing` for changed behavior, regressions, and refactoring.
 - Prefer existing capabilities, dependencies, and established solutions over custom infrastructure.
 - Implement at the most product-specific level that can own the behavior cleanly.
 - Avoid speculative abstractions and flexibility without a current requirement.
@@ -42,6 +47,7 @@ Classify ownership as platform, capability, or product. Most feature work belong
 
 ## Verification
 
+- Follow `software-testing`; keep affected existing tests current.
 - Verify observable behavior, not only implementation details.
 - Run the narrowest relevant checks, then any broader checks needed for affected contracts.
 - Compare results with the acceptance criteria and report anything that was not verified.
@@ -49,4 +55,5 @@ Classify ownership as platform, capability, or product. Most feature work belong
 ## References
 
 - [Development Model](references/development-model.md)
+- [Refactoring](references/refactoring.md)
 - [Specification-Driven Development](references/specification-driven-development.md)

@@ -6,6 +6,7 @@ Shared agent skills for the Synterra engineering team. One repo, every dev pulls
 
 - **pr-description**: generates PR descriptions in the standard WHAT / CHANGES / NOTES / Type format.
 - **software-engineering**: guides specification, ownership, implementation, and verification decisions.
+- **software-testing**: defines unit, component integration, and end-to-end coverage for changed behavior.
 - **frontend-engineering**: applies those decisions to frontend work using the existing framework and stack.
 - **react-engineering**: standardizes React modals, forms, state ownership, optimistic updates, and generated API boundaries.
 
@@ -52,6 +53,7 @@ Requirements:
 
 - Before planning, implementing, reviewing, or changing software, load and follow the
   `software-engineering` skill.
+- For implementation, refactoring, bug fixes, or test work, load and follow `software-testing`.
 - For frontend application work, load and follow both `software-engineering` and
   `frontend-engineering`.
 - For React application work, also load and follow `react-engineering`.
