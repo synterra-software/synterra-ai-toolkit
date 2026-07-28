@@ -5,7 +5,7 @@
 - Computable: derive during rendering.
 - Component-only: local state or reducer.
 - Form draft: React Hook Form.
-- Stable, infrequently changed cross-tree: context.
+- Stable, infrequently changed cross-tree: context. Context also injects per-screen dependencies into shared components; prefer a prop when only one level would pass it.
 - Frequently changed shared client interaction: existing store with focused selectors.
 - Backend-owned: existing server-state cache.
 
@@ -36,6 +36,17 @@ const [todos, setTodos] = useState(data);
 // ✅ cache owns the data; derive the rest during render
 const { data: todos } = useTodosQuery();
 const visible = todos.filter((t) => !t.done);
+
+// ✅ context as dependency injection behind a hook: one shared component, per-screen link target
+const OrderLinkContext = createContext("/orders");
+const useOrderLink = () => useContext(OrderLinkContext);
+
+// each screen injects its destination once
+<OrderLinkContext.Provider value="/admin/orders"><OrderTable /></OrderLinkContext.Provider>
+
+// deep inside OrderTable — no prop drilled, no context type exposed
+const href = useOrderLink();
+return <Link to={href}>View order</Link>;
 ```
 
 ## Check

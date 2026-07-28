@@ -4,8 +4,10 @@ Apply the `software-engineering` refactoring workflow first.
 
 ## Structure
 
-- Treat components over 400 lines with multiple responsibilities as God-component candidates; split by responsibility, not size alone.
-- Move domain logic to domain modules, stateful reuse to Hooks, calculations to helpers, and independent UI to components.
+- Split components by responsibility, not line count. Signals: unrelated state clusters, Effects serving different concerns, pass-through props, JSX sections that change independently.
+- Separate logic from presentation: domain rules in domain modules, stateful logic in custom Hooks, pure calculations in plain helpers, independent UI in components.
+- Keep state in the lowest component that uses it; lift only when actually shared. Pass JSX as `children` instead of drilling props.
+- Model variants with composition or discriminated props, not accumulating boolean flags.
 - Replace complex render IIFEs with named components or helpers; keep simple expressions local.
 - Use typed maps for stable dispatch, exhaustive `switch` for unions, and `if` for simple conditions.
 - Extract repeated logic only when meaning and contract match.
