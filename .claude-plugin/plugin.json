@@ -1,10 +1,10 @@
 {
   "name": "synterra-dev",
-  "description": "Synterra shared engineering skills. Ships the pr-description skill (standardized PR descriptions in the WHAT / CHANGES / NOTES / Type format).",
-  "version": "0.1.3",
+  "description": "Synterra shared engineering skills: software-engineering (specification, ownership, implementation, verification), frontend-engineering (framework-aware frontend decisions), react-engineering (NiceModal modals, React Hook Form, state ownership, server caches, generated API clients), and pr-description (standardized PR descriptions in the WHAT / CHANGES / NOTES / Type format).",
+  "version": "0.2.0",
   "author": {
     "name": "Synterra Engineering",
     "email": "admin@synterra.software"
   },
-  "keywords": ["pr", "pull-request", "git", "workflow"]
+  "keywords": ["pr", "pull-request", "git", "workflow", "engineering", "frontend", "react", "typescript"]
 }
