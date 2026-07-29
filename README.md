@@ -1,13 +1,50 @@
 # Synterra Skills
 
-Shared agent skills for the Synterra engineering team. One repo, every dev pulls it once.
+Shared Claude Code and Codex skills for the Synterra engineering team. One repo, every dev pulls it
+once.
 
-## Skills
+## Available skills
 
-- **pr-description**: generates PR descriptions in the standard WHAT / CHANGES / NOTES / Type format.
-- **software-engineering**: guides specification, ownership, implementation, and verification decisions.
-- **frontend-engineering**: applies those decisions to frontend work using the existing framework and stack.
-- **react-engineering**: standardizes React modals, forms, state ownership, optimistic updates, and generated API boundaries.
+### `pr-description`
+
+Creates a pull request description in Synterra's standard WHAT / CHANGES / NOTES / Type format. It
+reads the current branch's Git history and diff, builds a Jira link from a `PROJECT-123` key in the
+branch name, and summarizes the changed files for reviewers. It does not fetch Jira ticket contents.
+
+Use it when preparing, reviewing, or opening a pull request. It prints the description by default and
+opens a pull request only when explicitly asked.
+
+- **Codex:** `$pr-description Create a PR description for my current branch`
+- **Claude Code:** `/pr-description Create a PR description for my current branch`
+
+### `software-engineering`
+
+Guides general software work from outcome definition through specification, ownership, implementation,
+refactoring, and verification. Use it before planning, implementing, changing, or reviewing software.
+
+- **Codex:** `$software-engineering Plan and implement this change`
+- **Claude Code:** `/software-engineering Plan and implement this change`
+
+### `frontend-engineering`
+
+Applies the software-engineering workflow to frontend applications while preserving the existing
+framework, design system, dependencies, architecture, and repository conventions. Use it together
+with `software-engineering` for frontend work.
+
+- **Codex:** `$frontend-engineering Implement this frontend change`
+- **Claude Code:** `/frontend-engineering Implement this frontend change`
+
+### `react-engineering`
+
+Provides React and TypeScript rules for components, hooks, modals, forms, state, server data, generated
+API clients, and refactoring. Use it together with `software-engineering` and `frontend-engineering`
+for React work; it loads the reference files relevant to the requested change.
+
+- **Codex:** `$react-engineering Implement this React change`
+- **Claude Code:** `/react-engineering Implement this React change`
+
+All four skills can also activate automatically when a request matches their descriptions. Explicit
+invocation is useful when you want to guarantee that a particular workflow is loaded.
 
 ## Install as a Claude Code plugin (recommended)
 
@@ -103,25 +140,20 @@ manual follow-up required.
 ## Manual setup (one-time, per dev)
 
 ```
-git clone https://github.com/synterra-software/synterra-ai-toolkit.git
-cd synterra-ai-toolkit
+git clone <your-org>/synterra-skills ~/synterra-skills
+~/synterra-skills/install.sh
 ```
 
-Install each folder under `skills/` in your agent's user-level skills directory. Link the folder to
-receive repository updates automatically, or copy it if your agent does not support linked skill
-directories. Agents use different paths and verification commands, so follow your agent's skill
-installation documentation.
+`install.sh` symlinks each skill from this repo into both agents' user-level skill directories, so
+they are available in **every** project on your machine:
 
-### Claude Code helper
+- Claude Code: `~/.claude/skills/`
+- Codex: `~/.agents/skills/`
 
-Claude Code users can run:
-
-```
-./install.sh
-```
-
-This symlinks each skill into `~/.claude/skills/`. Verify the installation with `/skills` inside
-Claude Code.
+Verify with `/skills` in Claude Code or Codex CLI/IDE. In Codex, you can explicitly invoke a skill by
+typing `$` followed by its name, for example `$pr-description`. Codex can also select a skill
+automatically when your request matches its description. If a newly installed skill does not appear,
+restart Codex.
 
 ## Updating
 
@@ -135,13 +167,11 @@ Claude Code users only need to re-run `./install.sh` when a **new** skill folder
 
 ## Notes
 
-- Skill discovery paths and commands vary by agent. Consult your agent's documentation when adding
-  or verifying skills.
-- `install.sh` configures Claude Code only. It never overwrites a real folder in
-  `~/.claude/skills/`: if you already have a skill
-  with the same name, it skips it and warns, so your local skills are safe.
-- The `pr-description` skill builds the Jira link from the branch name (`PROJECT-XXX`) and asks you for
-  the summary. It does not fetch ticket contents.
+- Skills are picked up by **Claude Code** from `~/.claude/skills/` and by **Codex** from
+  `~/.agents/skills/`. Skills used via claude.ai on the web are uploaded per-user and are not covered
+  by this repo.
+- `install.sh` never overwrites a real skill folder in either destination. If you already have a
+  skill with the same name, it skips it and warns, so your local skills are safe.
 
 ## Layout
 

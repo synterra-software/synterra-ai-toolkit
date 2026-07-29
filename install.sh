@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
-# Link every skill in this repo into ~/.claude/skills so Claude Code picks them up
-# globally (in all your projects). Safe to re-run; only touches symlinks it owns.
+# Link every skill in this repo into the user skill directories used by Claude Code
+# and Codex so both agents pick them up globally (in all projects). Safe to re-run;
+# only touches symlinks it owns.
 #
 # One-time per machine:   ./install.sh
 # To update later:        git pull   (symlinks see the new content automatically)
@@ -9,27 +10,38 @@ set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SRC="$REPO_DIR/skills"
-DEST="$HOME/.claude/skills"
-
-mkdir -p "$DEST"
 
 shopt -s nullglob
-linked=0
-for skill in "$SRC"/*/; do
-  name="$(basename "$skill")"
-  target="${skill%/}"
-  link="$DEST/$name"
 
-  if [ -L "$link" ]; then
-    rm -f "$link"                 # re-point an existing symlink
-  elif [ -e "$link" ]; then
-    echo "SKIP  $name — $link exists and is a real file/dir, not touching it" >&2
-    continue
-  fi
+link_skills() {
+  local agent="$1"
+  local dest="$2"
+  local linked=0
+  local skill name target link
 
-  ln -s "$target" "$link"
-  echo "LINK  $name -> $link"
-  linked=$((linked + 1))
-done
+  mkdir -p "$dest"
 
-echo "Done. Linked $linked skill(s). Run '/skills' in Claude Code to verify."
+  for skill in "$SRC"/*/; do
+    name="$(basename "$skill")"
+    target="${skill%/}"
+    link="$dest/$name"
+
+    if [ -L "$link" ]; then
+      rm -f "$link"                 # re-point an existing symlink
+    elif [ -e "$link" ]; then
+      echo "SKIP  [$agent] $name — $link exists and is a real file/dir, not touching it" >&2
+      continue
+    fi
+
+    ln -s "$target" "$link"
+    echo "LINK  [$agent] $name -> $link"
+    linked=$((linked + 1))
+  done
+
+  echo "$agent: linked $linked skill(s)."
+}
+
+link_skills "Claude Code" "$HOME/.claude/skills"
+link_skills "Codex" "$HOME/.agents/skills"
+
+echo "Done. Run '/skills' in Claude Code or Codex CLI/IDE to verify."
