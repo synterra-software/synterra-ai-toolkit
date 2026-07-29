@@ -3,9 +3,23 @@
 Shared Claude Code and Codex skills for the Synterra engineering team. One repo, every dev pulls it
 once.
 
-## Skills
+## Available skills
 
-- **pr-description** — generates PR descriptions in the standard WHAT / CHANGES / NOTES / Type format.
+### `pr-description`
+
+Creates a pull request description in Synterra's standard WHAT / CHANGES / NOTES / Type format. It
+reads the current branch's Git history and diff, builds a Jira link from a `PROJECT-123` key in the
+branch name, and summarizes the changed files for reviewers. It does not fetch Jira ticket contents.
+
+Use it when preparing, reviewing, or opening a pull request:
+
+- **Codex:** `$pr-description Create a PR description for my current branch`
+- **Claude Code:** `/pr-description Create a PR description for my current branch`
+- **Automatic:** Ask `Create a PR description for my current branch` and the agent can select the
+  skill from the request.
+
+The skill prints the description by default. It opens a pull request only when you explicitly ask it
+to do so.
 
 ## Setup (one-time, per dev)
 
@@ -41,8 +55,6 @@ Only re-run `./install.sh` when a **new** skill folder is added to the repo.
   by this repo.
 - `install.sh` never overwrites a real skill folder in either destination. If you already have a
   skill with the same name, it skips it and warns, so your local skills are safe.
-- The `pr-description` skill builds the Jira link from the branch name (`PROJECT-XXX`) and asks you for
-  the summary. It does not fetch ticket contents.
 
 ## Layout
 
