@@ -9,7 +9,7 @@
       "name": "synterra-dev",
       "source": ".",
       "description": "Synterra shared engineering skills: software, frontend, and React engineering plus standardized PR descriptions",
-      "version": "0.2.0"
+      "version": "0.2.1"
     }
   ]
 }
