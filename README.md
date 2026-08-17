@@ -5,6 +5,8 @@ Shared agent skills for the Synterra engineering team. One repo, every dev pulls
 ## Skills
 
 - **pr-description**: generates PR descriptions in the standard WHAT / CHANGES / NOTES / Type format.
+- **add-pr-ui-screenshots**: captures changed UI and adds GitHub-hosted screenshots to an existing
+  PR description.
 - **software-engineering**: guides specification, ownership, implementation, and verification decisions.
 - **frontend-engineering**: applies those decisions to frontend work using the existing framework and stack.
 - **react-engineering**: standardizes React modals, forms, state ownership, optimistic updates, and generated API boundaries.
@@ -150,6 +152,7 @@ synterra-ai-toolkit/
 ├── .claude-plugin/        # plugin + marketplace manifests
 ├── install.sh
 └── skills/
+    ├── add-pr-ui-screenshots/
     ├── pr-description/
     ├── software-engineering/
     ├── frontend-engineering/
