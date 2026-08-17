@@ -1,0 +1,4 @@
+interface:
+  display_name: "Add PR UI Screenshots"
+  short_description: "Capture UI changes and update an existing PR"
+  default_prompt: "Use $add-pr-ui-screenshots to capture the changed UI and add the screenshots to the current pull request description."

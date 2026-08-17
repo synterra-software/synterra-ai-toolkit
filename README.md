@@ -17,6 +17,18 @@ opens a pull request only when explicitly asked.
 - **Codex:** `$pr-description Create a PR description for my current branch`
 - **Claude Code:** `/pr-description Create a PR description for my current branch`
 
+### `add-pr-ui-screenshots`
+
+Captures UI introduced or changed by the current branch, uploads verified screenshots as GitHub
+attachments, and safely adds them to an existing pull request description without replacing its
+other content.
+
+Use it when a user asks to add UI evidence to a pull request or confirms the screenshot prompt shown
+after `pr-description` creates a PR.
+
+- **Codex:** `$add-pr-ui-screenshots Add screenshots to the current PR`
+- **Claude Code:** `/add-pr-ui-screenshots Add screenshots to the current PR`
+
 ### `software-engineering`
 
 Guides general software work from outcome definition through specification, ownership, implementation,
@@ -43,7 +55,7 @@ for React work; it loads the reference files relevant to the requested change.
 - **Codex:** `$react-engineering Implement this React change`
 - **Claude Code:** `/react-engineering Implement this React change`
 
-All four skills can also activate automatically when a request matches their descriptions. Explicit
+All five skills can also activate automatically when a request matches their descriptions. Explicit
 invocation is useful when you want to guarantee that a particular workflow is loaded.
 
 ## Install as a Claude Code plugin (recommended)
@@ -180,6 +192,7 @@ synterra-ai-toolkit/
 ├── .claude-plugin/        # plugin + marketplace manifests
 ├── install.sh
 └── skills/
+    ├── add-pr-ui-screenshots/
     ├── pr-description/
     ├── software-engineering/
     ├── frontend-engineering/

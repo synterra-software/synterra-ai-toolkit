@@ -14,6 +14,8 @@ Read git state, produce PR description markdown. Mirrors `.github/pull_request_t
   `git branch`, `scripts/changes-table.sh`.
 - Don't fix, refactor, or clean up anything in the diff — flag it under NOTES instead.
 - Only exception: a `mktemp` body file for `gh` (Workflow step 4) — must live outside the repo.
+- A request to capture and publish UI screenshots belongs to the sibling `add-pr-ui-screenshots`
+  workflow; its authorization is limited to updating the existing PR description.
 
 ## Format — always this exact structure, no placeholders left unfilled
 
@@ -28,6 +30,9 @@ Read git state, produce PR description markdown. Mirrors `.github/pull_request_t
 |------|--------|
 | `path/to/file` | <what changed and why> |
 
+## SCREENSHOTS
+<GitHub-hosted UI image markdown — omit section if empty>
+
 ## NOTES
 <risks, follow-ups, related issues/PRs — omit section if empty>
 
@@ -41,7 +46,11 @@ Read git state, produce PR description markdown. Mirrors `.github/pull_request_t
 ticket contents.
 
 **Summary** — from diff + user's description; ask if context is missing. For UI changes, remind the
-author to attach before/after screenshots (you can't produce them).
+author to attach screenshots. If the user asks the agent to capture and publish them to an existing PR,
+use the sibling `add-pr-ui-screenshots` skill after drafting the description.
+
+**SCREENSHOTS** — optional. Preserve it when updating an existing description. Populate or replace it
+only through the sibling `add-pr-ui-screenshots` workflow, which uploads real GitHub attachments.
 
 **CHANGES**
 - Trivial change → one line, no table (e.g. `Updated \`config.yml\` to bump the timeout.`).
@@ -98,3 +107,9 @@ Backoff cap is 30s; if the endpoint starts rate-limiting we may want a jitter fo
    rm -f "$body"
    ```
    Title must be prefixed with the Jira key — required by CI.
+5. After `gh pr create` succeeds, always provide the created PR URL and ask in the user's language
+   whether to add UI screenshots. For Ukrainian, ask: `Додати UI-скріншоти до цього PR?`
+   - Ask even when the inspected diff does not obviously contain UI changes.
+   - Do not capture or publish screenshots until the user confirms.
+   - If the user confirms, use the sibling `add-pr-ui-screenshots` skill for the created PR.
+   - If the user declines, stop without changing the PR description again.
