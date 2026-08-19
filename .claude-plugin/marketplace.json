@@ -8,8 +8,8 @@
     {
       "name": "synterra-dev",
       "source": "./",
-      "description": "Synterra shared engineering skills for implementation, PR descriptions, and UI screenshot evidence",
-      "version": "0.2.2"
+      "description": "Synterra shared engineering skills for implementation and PR descriptions",
+      "version": "0.2.3"
     }
   ]
 }
