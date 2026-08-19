@@ -8,7 +8,7 @@
     {
       "name": "synterra-dev",
       "source": "./",
-      "description": "Synterra shared frontend, React, backend, NestJS, and PR workflow skills",
+      "description": "Synterra shared frontend, React, backend, NestJS, Supabase, and PR workflow skills",
       "version": "0.3.0"
     }
   ]

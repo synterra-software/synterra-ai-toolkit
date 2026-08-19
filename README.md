@@ -61,7 +61,16 @@ guards, persistence, queues, lifecycle, security, and testing. Use it together w
 - **Codex:** `$nestjs-engineering Implement this NestJS change`
 - **Claude Code:** `/nestjs-engineering Implement this NestJS change`
 
-All six skills can also activate automatically when a request matches their descriptions. Explicit
+### `supabase-engineering`
+
+Provides Supabase-specific guidance for Postgres schema and migrations, generated types, RLS, Auth and
+SSR, Storage, Realtime, Edge Functions, local development, deployment, and troubleshooting. It loads
+only the references relevant to the active Supabase product or workflow.
+
+- **Codex:** `$supabase-engineering Implement this Supabase change`
+- **Claude Code:** `/supabase-engineering Implement this Supabase change`
+
+All seven skills can also activate automatically when a request matches their descriptions. Explicit
 invocation is useful when you want to guarantee that a particular workflow is loaded.
 
 ## Install as a Claude Code plugin (recommended)
@@ -139,6 +148,7 @@ Requirements:
 - For backend application work, load and follow both `software-engineering` and
   `backend-engineering`.
 - For NestJS application work, also load and follow `nestjs-engineering`.
+- For Supabase work, also load and follow `supabase-engineering`.
 - When preparing, opening, or updating a pull request, load and follow `pr-description`.
 - Treat these skill requirements as mandatory repository instructions.
 <!-- synterra-ai-toolkit:end -->
@@ -206,7 +216,8 @@ synterra-ai-toolkit/
     ├── frontend-engineering/
     ├── react-engineering/
     ├── backend-engineering/
-    └── nestjs-engineering/
+    ├── nestjs-engineering/
+    └── supabase-engineering/
 ```
 
 Each skill folder contains `SKILL.md` plus optional `references/` and `scripts/`.
