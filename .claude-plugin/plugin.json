@@ -1,10 +1,10 @@
 {
   "name": "synterra-dev",
-  "description": "Synterra shared engineering skills for software, frontend, React, standardized PR descriptions, and UI screenshot evidence.",
-  "version": "0.2.2",
+  "description": "Synterra shared engineering skills for software, frontend, React, and standardized PR descriptions.",
+  "version": "0.2.3",
   "author": {
     "name": "Synterra Engineering",
     "email": "admin@synterra.software"
   },
-  "keywords": ["pr", "pull-request", "git", "screenshots", "ui", "workflow", "engineering", "frontend", "react", "typescript"]
+  "keywords": ["pr", "pull-request", "git", "workflow", "engineering", "frontend", "react", "typescript"]
 }
