@@ -43,7 +43,25 @@ for React work; it loads the reference files relevant to the requested change.
 - **Codex:** `$react-engineering Implement this React change`
 - **Claude Code:** `/react-engineering Implement this React change`
 
-All four skills can also activate automatically when a request matches their descriptions. Explicit
+### `backend-engineering`
+
+Applies the software-engineering workflow to backend services, APIs, workers, integrations, persistence,
+migrations, reliability, and operations while preserving the existing runtime, framework, database,
+contracts, and deployment model.
+
+- **Codex:** `$backend-engineering Implement this backend change`
+- **Claude Code:** `/backend-engineering Implement this backend change`
+
+### `nestjs-engineering`
+
+Provides NestJS and TypeScript rules for modules, dependency injection, transport boundaries, DTOs,
+guards, persistence, queues, lifecycle, security, and testing. Use it together with
+`software-engineering` and `backend-engineering`; it loads only the references relevant to the task.
+
+- **Codex:** `$nestjs-engineering Implement this NestJS change`
+- **Claude Code:** `/nestjs-engineering Implement this NestJS change`
+
+All six skills can also activate automatically when a request matches their descriptions. Explicit
 invocation is useful when you want to guarantee that a particular workflow is loaded.
 
 ## Install as a Claude Code plugin (recommended)
@@ -118,6 +136,9 @@ Requirements:
 - For frontend application work, load and follow both `software-engineering` and
   `frontend-engineering`.
 - For React application work, also load and follow `react-engineering`.
+- For backend application work, load and follow both `software-engineering` and
+  `backend-engineering`.
+- For NestJS application work, also load and follow `nestjs-engineering`.
 - When preparing, opening, or updating a pull request, load and follow `pr-description`.
 - Treat these skill requirements as mandatory repository instructions.
 <!-- synterra-ai-toolkit:end -->
@@ -183,7 +204,9 @@ synterra-ai-toolkit/
     ├── pr-description/
     ├── software-engineering/
     ├── frontend-engineering/
-    └── react-engineering/
+    ├── react-engineering/
+    ├── backend-engineering/
+    └── nestjs-engineering/
 ```
 
 Each skill folder contains `SKILL.md` plus optional `references/` and `scripts/`.
