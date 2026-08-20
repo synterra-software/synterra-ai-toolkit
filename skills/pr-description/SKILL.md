@@ -28,6 +28,9 @@ Read git state, produce PR description markdown. Mirrors `.github/pull_request_t
 |------|--------|
 | `path/to/file` | <what changed and why> |
 
+## SCREENSHOTS
+<GitHub-hosted UI image markdown — omit section if empty>
+
 ## NOTES
 <risks, follow-ups, related issues/PRs — omit section if empty>
 
@@ -41,7 +44,10 @@ Read git state, produce PR description markdown. Mirrors `.github/pull_request_t
 ticket contents.
 
 **Summary** — from diff + user's description; ask if context is missing. For UI changes, remind the
-author to attach before/after screenshots (you can't produce them).
+author to attach screenshots.
+
+**SCREENSHOTS** — optional. Preserve it when updating an existing description. Use GitHub-hosted image
+markdown when screenshots are provided.
 
 **CHANGES**
 - Trivial change → one line, no table (e.g. `Updated \`config.yml\` to bump the timeout.`).

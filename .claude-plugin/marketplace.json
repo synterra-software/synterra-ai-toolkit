@@ -7,9 +7,9 @@
   "plugins": [
     {
       "name": "synterra-dev",
-      "source": ".",
-      "description": "Synterra shared engineering skills",
-      "version": "0.1.3"
+      "source": "./",
+      "description": "Synterra shared frontend, React, Next.js, backend, NestJS, Supabase, and PR workflow skills",
+      "version": "0.4.0"
     }
   ]
 }

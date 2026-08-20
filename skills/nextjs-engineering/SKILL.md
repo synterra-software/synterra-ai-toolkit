@@ -5,6 +5,10 @@ description: Plan, implement, migrate, debug, or review Next.js applications acr
 
 # Next.js Engineering
 
+Apply `software-engineering`, `frontend-engineering`, and `react-engineering` first when they are
+available. This skill adds Next.js-specific rendering, caching, routing, and runtime decisions without
+redefining their general engineering and React guidance.
+
 Make the rendering, caching, and runtime behavior intentional and observable. Prefer the App Router for
 new work, but preserve the router and conventions already used by the project unless migration is in scope.
 
