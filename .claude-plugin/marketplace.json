@@ -9,7 +9,7 @@
       "name": "synterra-dev",
       "source": "./",
       "description": "Synterra shared frontend, React, Next.js, backend, NestJS, Supabase, and PR workflow skills",
-      "version": "0.4.0"
+      "version": "0.5.0"
     }
   ]
 }
