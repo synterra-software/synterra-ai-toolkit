@@ -1,11 +1,12 @@
 ---
 name: react-engineering
-description: Use for React and TypeScript components, hooks, memoization, modals (NiceModal), forms (React Hook Form), state, server data, optimistic updates, generated API clients, and refactoring.
+description: Use for React-specific components, hooks, effects, forms, modals, client state, server-state integration, optimistic updates, TypeScript props, and component refactoring. For Next.js routing, rendering, caching, or RSC behavior, use the Next.js skill instead.
 ---
 
 # React Engineering
 
-Apply `software-engineering` and `frontend-engineering` first. Preserve the existing stack, check current official docs, and change only requested or new code.
+Preserve the repository's React version, framework integration, component conventions, design system,
+form/modal libraries, and state/data stack. Change only requested or new code unless migration is in scope.
 
 ## Read Before Work
 
@@ -20,12 +21,15 @@ Apply `software-engineering` and `frontend-engineering` first. Preserve the exis
 
 Read every matching reference.
 
-## Non-Negotiable
+## Core rules
 
-- New modals use NiceModal. New data-entry flows use React Hook Form. These team standards
-  override the frontend reuse order; install either if missing.
-- Use typed functional components. Memoize only for a concrete benefit.
-- Effects only synchronize external systems; never issue requests from them.
+- Reuse the project's established modal and form solutions. When none exists, prefer NiceModal for modals
+  and React Hook Form for complex submitted forms. Add a dependency only when that change is in scope;
+  otherwise propose it and explain the tradeoff.
+- Follow the repository's component declaration style and type props explicitly. Memoize only for a
+  concrete benefit.
+- Prefer the framework or existing server-state layer for application data. Use Effects for lifecycle-bound
+  synchronization when no owning framework/data abstraction exists.
 - Give every value one owner. Keep backend data in the existing server-state cache.
 - Never edit generated API code.
 - Do not migrate existing code unless requested.

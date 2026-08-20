@@ -2,8 +2,9 @@
 
 ## Components and Props
 
-- Use functional components with `FC<ComponentProps>` and a descriptive props type.
-- Use a typed function for generics or framework APIs that `FC` cannot express cleanly.
+- Follow the repository's function-declaration or typed-constant convention for components.
+- Type props explicitly. Use `FC` only when it is the established convention or provides a concrete benefit;
+  use a typed function when generics or framework APIs are clearer without it.
 - Type `children` explicitly. Extend native props with `ComponentPropsWithoutRef`.
 
 ## `memo`
@@ -22,9 +23,9 @@ type UserCardProps = ComponentPropsWithoutRef<"div"> & {
   children?: ReactNode;
 };
 
-const UserCard: FC<UserCardProps> = ({ user, children, ...rest }) => (
-  <div {...rest}>{user.name}{children}</div>
-);
+function UserCard({ user, children, ...rest }: UserCardProps) {
+  return <div {...rest}>{user.name}{children}</div>;
+}
 
 // ❌ memo defeated: children JSX gets a new identity every render
 <MemoizedList>{items.map(renderItem)}</MemoizedList>

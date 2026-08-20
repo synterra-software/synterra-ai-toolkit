@@ -7,11 +7,14 @@
 
 ## `useEffect`
 
-- Use only for external synchronization: subscriptions, timers, browser APIs, or imperative widgets.
-- Never issue application queries or mutations from an Effect.
-- Use the existing data or framework layer; trigger interaction mutations from their handler.
-- If no data layer exists, recommend one before adding it.
-- Never derive, copy, or chain state, handle events, or notify parents in an Effect.
+- Prefer Effects for lifecycle-bound external synchronization: subscriptions, timers, browser APIs,
+  imperative widgets, or a resource whose lifetime is owned by the mounted component.
+- Prefer the framework or existing server-state layer for application queries. An Effect-based request is
+  acceptable only when component lifecycle genuinely owns it and no established data abstraction does;
+  handle cancellation, stale responses, remounting, loading, and errors explicitly.
+- Trigger interaction mutations from their event handler or the repository's mutation layer.
+- Derive values during rendering and handle interactions in their handler. Use an Effect for parent
+  notification only when it represents synchronization with an external owner rather than derived state.
 - Never mirror props into local state and resync them with an Effect. Derive during render; reset with `key`; if a prop only seeds state, name it `initialX` and ignore later changes.
 - Include all dependencies and symmetrical cleanup. Remounting must be safe.
 

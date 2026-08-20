@@ -1,50 +1,30 @@
 ---
 name: frontend-engineering
-description: Use when planning, architecting, implementing, or reviewing frontend application changes within an existing framework, design system, dependency stack, or repository conventions.
+description: Use for framework-agnostic or cross-cutting frontend architecture involving the application shell, routing, design system, client state, data access, accessibility, performance, or shared frontend boundaries. Prefer React or Next.js skills for narrow framework-specific implementation.
 ---
 
 # Frontend Engineering
 
-## Purpose
-
-Apply sound software engineering decisions to frontend work while respecting the application already in place.
-
-## Relationship to Software Engineering
-
-Apply the `software-engineering` skill first for outcome definition, specification depth, ownership, implementation scope, and verification. This skill adds frontend-specific decisions without redefining that guidance.
+Preserve the application's framework, design system, dependency stack, architecture, and repository
+conventions. Use this skill for decisions that cross components or features; use the matching framework
+skill when the work is local to React, Next.js, or another framework.
 
 ## Before Implementation
 
 - Inspect the framework, project structure, application shell, routing, state, data access, design system, dependencies, and established feature patterns.
 - Trace the affected user flow, UI states, failures, and integration boundaries.
-- Decide whether the change belongs to product composition, a proven reusable capability, or the frontend platform.
 - Do not rewrite working architecture without a concrete requirement.
 
-## Frontend Ownership Model
-
-Keep most feature work in product code. Reuse capabilities for recurring frontend behavior with understood variation. Change the platform only for stable foundations shared across multiple capabilities or product areas.
-
-## Reuse Order
-
-Use the first option that cleanly satisfies the requirement:
-
-1. Existing project implementation
-2. Existing design system or shared module
-3. Framework-native capability
-4. Existing project dependency
-5. Mature ecosystem library
-6. Small custom implementation
-
-A more specific skill, such as `react-engineering`, may designate team-standard libraries that override this order.
-
-Framework-aware means using the current framework's established patterns and native solutions, not ignoring the framework to pursue generic code.
+For platform, shared-capability, and product ownership decisions, read
+[Frontend Boundaries](references/frontend-boundaries.md).
 
 ## Implementation
 
 - Follow repository and framework conventions.
 - Reuse the design system, shared modules, and installed dependencies where they fit.
-- Avoid adding a dependency when the existing stack already covers the requirement.
-- Avoid recreating mature ecosystem solutions.
+- Prefer framework-native capabilities before adding custom infrastructure.
+- Add a dependency only when the existing stack does not cover the requirement and dependency changes are
+  within scope.
 - Keep product-specific behavior in product code instead of forcing a generic abstraction.
 - Make the smallest coherent change that preserves existing architecture and behavior.
 
@@ -53,9 +33,3 @@ Framework-aware means using the current framework's established patterns and nat
 - Verify the user-visible flow, state transitions, failure behavior, and integration boundaries.
 - Run the framework and repository checks relevant to the changed area.
 - Confirm reuse and ownership decisions still match the implemented behavior.
-
-## References
-
-- [Frontend Platform](references/frontend-platform.md)
-- [Frontend Capabilities](references/frontend-capabilities.md)
-- [Frontend Product Composition](references/frontend-product-composition.md)

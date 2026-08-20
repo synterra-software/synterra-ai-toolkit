@@ -1,19 +1,19 @@
 ---
 name: pr-description
-description: Generate a standardized pull request description in the Synterra format — WHAT (ticket link + summary), a CHANGES table of modified files with a short note on what changed in each, NOTES, and a trivial/substantial Type. Use this whenever opening or preparing a pull request, writing or updating a PR description, running `gh pr create`, summarizing a branch's changes for review, or when an agent finishes a coding task and is about to open a PR — even if the user doesn't say "template" or "description". If work has been committed to a feature branch and a PR is the next step, use this skill.
+description: Draft or revise a Synterra pull request title and description in the WHAT, CHANGES, optional SCREENSHOTS/NOTES, and Type format. Use when PR description content is requested or another authorized workflow needs a PR body; do not activate for general task summaries or manage branches, commits, pushes, or PR publication.
 ---
 
 # PR Description
 
-Read git state, produce PR description markdown. Mirrors `.github/pull_request_template.md`.
+Read git state and produce PR title/body markdown that mirrors `.github/pull_request_template.md`.
 
-## Scope — read-only
+## Ownership — content only
 
-- Never edit/create/move/delete/stage any file, never run a state-changing git command (`add`, `commit`,
-  `push`, `restore`, `checkout`, `reset`, `stash`). Allowed: `git diff`, `git log`, `git status`,
-  `git branch`, `scripts/changes-table.sh`.
+- Keep repository inspection read-only. Allowed: `git diff`, `git log`, `git status`, `git branch`, and
+  `scripts/changes-table.sh`.
+- Do not create or switch branches, edit product files, stage, commit, push, or publish/edit a remote PR.
+  A separate explicitly authorized GitHub workflow may consume the generated title/body.
 - Don't fix, refactor, or clean up anything in the diff — flag it under NOTES instead.
-- Only exception: a `mktemp` body file for `gh` (Workflow step 4) — must live outside the repo.
 
 ## Format — always this exact structure, no placeholders left unfilled
 
@@ -70,37 +70,12 @@ Omit entirely if nothing to flag.
 **Type** — trivial: config/copy/docs/isolated fix, no shared/core code. substantial: logic, architecture,
 shared code, or multi-project. Drives approval policy — when unsure, mark substantial.
 
-## Example
-
-Branch `feature/PROJ-412-upload-retry`, commits adding upload retry logic + test:
-
-```markdown
-## WHAT
-- **Ticket:** [PROJ-412](https://synterrasoftware.atlassian.net/browse/PROJ-412)
-- **Summary:** Uploads intermittently failed on flaky networks. Adds automatic retry with exponential
-  backoff to the upload call so transient errors self-recover.
-
-## CHANGES
-| File | Change |
-|------|--------|
-| `src/services/uploader.ts` | add retry-with-backoff wrapper around the PUT request |
-| `src/services/uploader.test.ts` | cover retry, max-attempts, and give-up paths |
-
-## NOTES
-Backoff cap is 30s; if the endpoint starts rate-limiting we may want a jitter follow-up.
-
-## Type: [ ] trivial  [x] substantial
-```
-
 ## Workflow
 
-1. `git log` + `git diff` against the branch base to get real scope — don't infer from branch/commit titles.
-2. Draft the description per Format + Rules above.
-3. Description-only request → print markdown, stop. Only open a PR if explicitly asked (e.g. "open the PR").
-4. To open (per Scope):
-   ```bash
-   body="$(mktemp)"
-   gh pr create --title "PROJ-XXX: <concise title>" --body-file "$body"
-   rm -f "$body"
-   ```
-   Title must be prefixed with the Jira key — required by CI.
+1. Resolve the base branch, then inspect `git log`, committed diff, staged/unstaged changes, and untracked
+   paths. Do not infer scope from branch or commit titles alone.
+2. Use `scripts/changes-table.sh [base]` when a committed substantial diff benefits from a skeleton; account
+   separately for relevant working-tree paths because the script intentionally compares `base...HEAD`.
+3. Draft the title and body per Format and Rules. Preserve user-managed screenshots and notes when revising
+   an existing description.
+4. Return the title/body and stop. The title must use the Jira prefix required by CI.

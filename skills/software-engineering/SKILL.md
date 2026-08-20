@@ -1,6 +1,6 @@
 ---
 name: software-engineering
-description: Use when planning, specifying, architecting, implementing, refactoring, or reviewing software changes involving scope, ownership, reuse, or verification.
+description: Use for cross-cutting software planning, specification, architectural ownership, reuse decisions, refactoring strategy, or verification design. Prefer a more specific framework skill for narrow implementation work that does not require these decisions.
 ---
 
 # Software Engineering
