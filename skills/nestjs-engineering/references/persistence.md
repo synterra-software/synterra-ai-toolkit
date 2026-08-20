@@ -1,8 +1,5 @@
 # Persistence
 
-Apply the backend [Persistence and Migrations](../../backend-engineering/references/persistence-and-migrations.md)
-rules first.
-
 ## Preserve the Existing Boundary
 
 - Keep Prisma, TypeORM, MikroORM, Mongoose, raw SQL, or another installed data layer unless the user asks

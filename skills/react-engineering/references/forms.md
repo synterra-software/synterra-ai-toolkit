@@ -2,14 +2,16 @@
 
 ## Rules
 
-- Use React Hook Form for submitted, validated, multi-field, dirty, or error-tracked input.
-- If missing, install a React-compatible version with the repository's package manager.
+- Reuse the repository's established form library and field adapters.
+- When no form solution exists, prefer React Hook Form for submitted, validated, multi-field, dirty, or
+  error-tracked input. Add it only when dependency changes are within scope; otherwise propose it and
+  explain why local state is insufficient.
 - Local state is allowed only for a single lightweight search, filter, or instant control without form lifecycle.
 - Never mirror form values in component state.
-- Use `register` for ref-compatible inputs.
-- Use `Controller` or `useController` for controlled fields.
+- With React Hook Form, use `register` for ref-compatible inputs and `Controller` or `useController` for
+  controlled fields.
 - Reuse the repository's compatible field integration. Otherwise use a maintained recommended integration or a thin adapter.
-- React Hook Form owns the draft. The server-state layer owns submitted data.
+- The selected form layer owns the draft. The server-state layer owns submitted data.
 
 ## Example
 

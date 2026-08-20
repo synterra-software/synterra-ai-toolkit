@@ -11,25 +11,24 @@ Creates a pull request description in Synterra's standard WHAT / CHANGES / NOTES
 reads the current branch's Git history and diff, builds a Jira link from a `PROJECT-123` key in the
 branch name, and summarizes the changed files for reviewers. It does not fetch Jira ticket contents.
 
-Use it when preparing, reviewing, or opening a pull request. It prints the description by default and
-opens a pull request only when explicitly asked.
+Use it when preparing or revising pull request content. It returns a title/body; branch management,
+commits, pushes, and GitHub publication belong to a separate explicitly authorized workflow.
 
 - **Codex:** `$pr-description Create a PR description for my current branch`
 - **Claude Code:** `/pr-description Create a PR description for my current branch`
 
 ### `software-engineering`
 
-Guides general software work from outcome definition through specification, ownership, implementation,
-refactoring, and verification. Use it before planning, implementing, changing, or reviewing software.
+Guides cross-cutting software work through specification, architectural ownership, reuse, refactoring,
+and verification. Use it when those decisions span a framework or product boundary.
 
 - **Codex:** `$software-engineering Plan and implement this change`
 - **Claude Code:** `/software-engineering Plan and implement this change`
 
 ### `frontend-engineering`
 
-Applies the software-engineering workflow to frontend applications while preserving the existing
-framework, design system, dependencies, architecture, and repository conventions. Use it together
-with `software-engineering` for frontend work.
+Guides framework-agnostic or cross-cutting frontend architecture while preserving the framework, design
+system, dependencies, application shell, and repository conventions.
 
 - **Codex:** `$frontend-engineering Implement this frontend change`
 - **Claude Code:** `/frontend-engineering Implement this frontend change`
@@ -37,8 +36,7 @@ with `software-engineering` for frontend work.
 ### `react-engineering`
 
 Provides React and TypeScript rules for components, hooks, modals, forms, state, server data, generated
-API clients, and refactoring. Use it together with `software-engineering` and `frontend-engineering`
-for React work; it loads the reference files relevant to the requested change.
+API clients, and refactoring. It loads only the references relevant to the requested React change.
 
 - **Codex:** `$react-engineering Implement this React change`
 - **Claude Code:** `/react-engineering Implement this React change`
@@ -47,17 +45,16 @@ for React work; it loads the reference files relevant to the requested change.
 
 Provides Next.js-specific guidance for App Router and Pages Router, React Server Components, SSR,
 SSG, ISR, Cache Components and PPR, data fetching, Server Actions, Route Handlers, routing, runtimes,
-and deployment. Use it together with `software-engineering`, `frontend-engineering`, and
-`react-engineering`; it loads only the references relevant to the task.
+and deployment. It loads only the references relevant to the requested Next.js behavior.
 
 - **Codex:** `$nextjs-engineering Implement this Next.js change`
 - **Claude Code:** `/nextjs-engineering Implement this Next.js change`
 
 ### `backend-engineering`
 
-Applies the software-engineering workflow to backend services, APIs, workers, integrations, persistence,
-migrations, reliability, and operations while preserving the existing runtime, framework, database,
-contracts, and deployment model.
+Guides framework-agnostic or cross-cutting backend architecture across services, APIs, workers,
+integrations, persistence, reliability, and operations while preserving the existing runtime and
+deployment model.
 
 - **Codex:** `$backend-engineering Implement this backend change`
 - **Claude Code:** `/backend-engineering Implement this backend change`
@@ -65,8 +62,8 @@ contracts, and deployment model.
 ### `nestjs-engineering`
 
 Provides NestJS and TypeScript rules for modules, dependency injection, transport boundaries, DTOs,
-guards, persistence, queues, lifecycle, security, and testing. Use it together with
-`software-engineering` and `backend-engineering`; it loads only the references relevant to the task.
+guards, persistence, queues, lifecycle, security, and testing. It loads only the references relevant
+to the requested NestJS change.
 
 - **Codex:** `$nestjs-engineering Implement this NestJS change`
 - **Claude Code:** `/nestjs-engineering Implement this NestJS change`
@@ -150,18 +147,16 @@ Requirements:
 <!-- synterra-ai-toolkit:start -->
 ## Synterra engineering skills
 
-- Before planning, implementing, reviewing, or changing software, load and follow the
-  `software-engineering` skill.
-- For frontend application work, load and follow both `software-engineering` and
-  `frontend-engineering`.
-- For React application work, also load and follow `react-engineering`.
-- For Next.js application work, also load and follow `nextjs-engineering`.
-- For backend application work, load and follow both `software-engineering` and
-  `backend-engineering`.
-- For NestJS application work, also load and follow `nestjs-engineering`.
-- For Supabase work, also load and follow `supabase-engineering`.
+- Load the most specific matching skill for the task; do not automatically load its entire domain stack.
+- Use `software-engineering` for cross-cutting specification, architecture, ownership, reuse, or refactoring.
+- Use `frontend-engineering` for framework-agnostic or cross-cutting frontend architecture.
+- Use `react-engineering` for React components, hooks, forms, modals, and client/server-state integration.
+- Use `nextjs-engineering` for Next.js routing, rendering, caching, RSC, actions, runtimes, and deployment.
+- Use `backend-engineering` for framework-agnostic or cross-cutting backend architecture.
+- Use `nestjs-engineering` for NestJS-specific implementation and `supabase-engineering` for Supabase work.
+- Combine skills only when the requested change genuinely crosses their boundaries.
 - When preparing, opening, or updating a pull request, load and follow `pr-description`.
-- Treat these skill requirements as mandatory repository instructions.
+- Treat the matching skill requirements as mandatory repository instructions.
 <!-- synterra-ai-toolkit:end -->
 
 6. Clean up only the temporary source directory created for this installation.

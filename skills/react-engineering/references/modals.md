@@ -2,12 +2,14 @@
 
 ## Rules
 
-- Build every new modal with `@ebay/nice-modal-react`.
-- If missing, install a React-compatible version with the repository's package manager.
-- Mount one `NiceModal.Provider` at the appropriate client boundary.
-- Use NiceModal's adapter for the UI library when available. Otherwise create the smallest lifecycle adapter.
+- Reuse the repository's established modal manager and design-system dialog primitives.
+- When no modal pattern exists, prefer `@ebay/nice-modal-react` for programmatic or cross-tree modals. Add
+  it only when dependency changes are within scope; otherwise propose it and explain the tradeoff.
+- With NiceModal, mount one provider at the appropriate client boundary and use the UI-library adapter when
+  available; otherwise create the smallest lifecycle adapter.
 - Do not migrate existing modals unless requested.
-- If NiceModal is incompatible, report the conflict. Do not introduce another pattern silently.
+- If the preferred solution is incompatible with the framework, rendering model, or design system, preserve
+  the compatible project architecture and report the tradeoff.
 
 ## Example
 

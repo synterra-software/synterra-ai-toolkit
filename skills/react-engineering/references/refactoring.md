@@ -1,6 +1,7 @@
 # React Refactoring
 
-Apply the `software-engineering` refactoring workflow first.
+Preserve observable behavior unless the requested change explicitly alters it. Use broader architectural
+guidance only when the refactor crosses React or feature ownership boundaries.
 
 ## Structure
 
@@ -26,7 +27,8 @@ const BlockView = blockViews[block.kind];
 
 ## Related Rules
 
-When refactoring those concerns, also apply [Components](components.md), [Hooks](hooks.md), [State and Server Data](state-and-server-data.md), and [TypeScript](typescript.md).
+Read the matching guidance for [Components](components.md), [Hooks](hooks.md),
+[State and Server Data](state-and-server-data.md), and [TypeScript](typescript.md).
 
 ## Check
 

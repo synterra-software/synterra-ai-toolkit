@@ -1,7 +1,5 @@
 # Database and Migrations
 
-Apply the backend persistence and migration rules first.
-
 ## Schema Source of Truth
 
 - If `supabase/schemas/` or configured schema paths exist, edit the declarative desired state and generate
