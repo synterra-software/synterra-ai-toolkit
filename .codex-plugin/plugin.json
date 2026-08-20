@@ -1,0 +1,41 @@
+{
+  "name": "synterra-dev",
+  "version": "0.5.0",
+  "description": "Synterra shared engineering skills for software, frontend, React, Next.js, backend, NestJS, Supabase, and pull request workflows.",
+  "author": {
+    "name": "Synterra Engineering",
+    "email": "admin@synterra.software",
+    "url": "https://github.com/synterra-software"
+  },
+  "homepage": "https://github.com/synterra-software/synterra-ai-toolkit",
+  "repository": "https://github.com/synterra-software/synterra-ai-toolkit",
+  "keywords": [
+    "engineering",
+    "frontend",
+    "react",
+    "nextjs",
+    "backend",
+    "nestjs",
+    "supabase",
+    "pull-request"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Synterra Dev",
+    "shortDescription": "Shared engineering workflows and framework guidance",
+    "longDescription": "Use Synterra's shared skills for software architecture, frontend and backend engineering, React, Next.js, NestJS, Supabase, and standardized pull request descriptions.",
+    "developerName": "Synterra Engineering",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/synterra-software/synterra-ai-toolkit",
+    "defaultPrompt": [
+      "Plan and implement this change using Synterra engineering standards",
+      "Review this code using the most specific Synterra skill",
+      "Create a Synterra pull request description for this branch"
+    ],
+    "brandColor": "#5B5BD6"
+  }
+}
