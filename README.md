@@ -5,6 +5,8 @@ Shared Claude Code skills for the Synterra engineering team. One repo, every dev
 ## Skills
 
 - **pr-description** — generates PR descriptions in the standard WHAT / CHANGES / NOTES / Type format.
+- **nextjs-engineering** — guides Next.js App/Pages Router work across RSC, SSR, SSG, ISR,
+  Cache Components/PPR, data boundaries, routing, runtimes, and deployment.
 
 ## Setup (one-time, per dev)
 
@@ -40,10 +42,12 @@ Only re-run `./install.sh` when a **new** skill folder is added to the repo.
 synterra-skills/
 ├── install.sh
 └── skills/
+    ├── nextjs-engineering/
+    │   ├── SKILL.md
+    │   └── references/*.md
     └── pr-description/
         ├── SKILL.md
-        └── scripts/
-            └── changes-table.sh
+        └── scripts/changes-table.sh
 ```
 
 Add a new shared skill by dropping another folder under `skills/` and committing it.
