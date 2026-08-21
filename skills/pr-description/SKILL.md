@@ -1,6 +1,6 @@
 ---
 name: pr-description
-description: Always use whenever a pull request is being prepared, opened, updated, or described — including `gh pr create`, `gh pr edit`, opening a PR from the GitHub UI or an IDE, pushing a branch in order to open a PR, or finishing a coding task on a feature branch where a PR is the next step. Run it automatically before any action that creates or edits a pull request, even if the user never says "description" or "template", and use its output as the PR title and body.
+description: Always use whenever a pull request is being prepared, opened, updated, or described — including `gh pr create`, `gh pr edit`, opening a PR from the GitHub UI or an IDE, pushing a branch in order to open a PR, or finishing a coding task on a feature branch where a PR is the next step. Run it automatically before any action that creates or edits a pull request, even if the user never says "description" or "template", and use its output as the PR title and body. It also creates the `<type>/<PROJECT-XXX>-<description>` branch when the work still sits on the default branch.
 ---
 
 # PR Description
@@ -21,15 +21,45 @@ Never let a pull request be opened or updated with an ad-hoc body. Produce the t
 then use exactly that output for the PR. This applies even when the user never says "description",
 "template", or "PR description".
 
-## Ownership — content only
+## Ownership — content, plus the branch it lands on
 
-- Keep repository inspection read-only. Allowed: `git diff`, `git log`, `git status`, `git branch`, and
-  `scripts/changes-table.sh`.
-- Do not create or switch branches, edit product files, stage, commit, or push.
+- Keep repository inspection read-only. Allowed: `git diff`, `git log`, `git status`, `git branch`,
+  `git ls-remote`, and `scripts/changes-table.sh`.
+- Create the PR branch when one is needed, per Branch naming below. Do not edit product files, stage,
+  commit, or push.
 - Do not open or edit a remote PR on this skill's own initiative. When the user has explicitly asked for a
-  PR to be created or updated, supply this title/body to that command (Workflow step 5) instead of
+  PR to be created or updated, supply this title/body to that command (Workflow step 6) instead of
   blocking it.
 - Don't fix, refactor, or clean up anything in the diff — flag it under NOTES instead.
+
+## Branch naming — create one only when the work has nowhere to land
+
+Check the current branch first. Create a branch only when the work sits on the default branch (`main` or
+`master`) or on a branch that cannot host this PR. Already on a valid feature branch → keep it; never
+rename it, never re-create it, never switch away from it.
+
+Format: `<type>/<PROJECT-XXX>-<short-kebab-description>`
+
+- **`<type>`** — `feature` (new behavior), `bugfix` (defect fix), `hotfix` (urgent production fix), or
+  `chore` (config, docs, tooling, dependencies, or refactor with no behavior change). The type comes
+  first, before the Jira key.
+- **`<PROJECT-XXX>`** — the same Jira key the Ticket field uses. No key found → ask, don't guess. When the
+  user confirms there is no ticket, drop the key segment: `<type>/<short-kebab-description>`.
+- **`<short-kebab-description>`** — 2–5 lowercase words naming the outcome, hyphen-separated. ASCII only;
+  no spaces, underscores, or uppercase; no leading/trailing hyphen; keep the whole name under ~60 chars.
+
+Examples: `feature/PROJ-412-upload-retry`, `bugfix/PROJ-77-null-session-crash`,
+`chore/remove-pr-ui-screenshots`.
+
+Create it from the current `HEAD` so uncommitted work carries over:
+
+```bash
+git checkout -b feature/PROJ-412-upload-retry
+```
+
+Before creating, confirm the name is free with `git branch --list <name>` and
+`git ls-remote --heads origin <name>`; on a collision, ask rather than reusing or overwriting. Never pass
+`--force`, never delete or reset a branch, and never move work off a branch that already has commits on it.
 
 ## Format — always this exact structure, no placeholders left unfilled
 
@@ -55,7 +85,7 @@ then use exactly that output for the PR. This applies even when the user never s
 
 ## Rules per section
 
-**Ticket** — extract `PROJECT-XXX` from branch name (`feature|bugfix|hotfix|chore/PROJECT-XXX-desc`) →
+**Ticket** — extract `PROJECT-XXX` from the branch name (see Branch naming) →
 `https://synterrasoftware.atlassian.net/browse/PROJECT-XXX`. No key found → ask, don't guess. Don't fetch
 ticket contents.
 
@@ -88,15 +118,17 @@ shared code, or multi-project. Drives approval policy — when unsure, mark subs
 
 ## Workflow
 
-1. Resolve the base branch, then inspect `git log`, committed diff, staged/unstaged changes, and untracked
-   paths. Do not infer scope from branch or commit titles alone.
-2. Use `scripts/changes-table.sh [base]` when a committed substantial diff benefits from a skeleton; account
+1. Resolve the base branch and check the current branch. On the default branch, pick a name per Branch
+   naming and create it before anything else, so later commits do not land on `main`.
+2. Inspect `git log`, committed diff, staged/unstaged changes, and untracked paths. Do not infer scope from
+   branch or commit titles alone.
+3. Use `scripts/changes-table.sh [base]` when a committed substantial diff benefits from a skeleton; account
    separately for relevant working-tree paths because the script intentionally compares `base...HEAD`.
-3. Draft the title and body per Format and Rules. Preserve user-managed screenshots and notes when revising
+4. Draft the title and body per Format and Rules. Preserve user-managed screenshots and notes when revising
    an existing description.
-4. Description-only request → return the title/body and stop. The title must use the Jira prefix required
+5. Description-only request → return the title/body and stop. The title must use the Jira prefix required
    by CI.
-5. A PR-creating or PR-updating action the user explicitly asked for → hand this exact title/body to it via
+6. A PR-creating or PR-updating action the user explicitly asked for → hand this exact title/body to it via
    a body file outside the repository:
    ```bash
    body="$(mktemp)"
