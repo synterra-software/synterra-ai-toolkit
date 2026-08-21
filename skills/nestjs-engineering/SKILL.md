@@ -1,13 +1,13 @@
 ---
 name: nestjs-engineering
-description: Use for NestJS-specific modules, controllers, providers, dependency injection, DTOs, pipes, guards, interceptors, filters, persistence wiring, queues, lifecycle, configuration, and testing. Use the general backend skill only when the task crosses framework or service boundaries.
+description: Always use for any NestJS work — modules, controllers, providers, dependency injection, DTOs, pipes, guards, interceptors, filters, persistence wiring, queues, lifecycle, configuration, and testing. Load it together with `software-engineering` and `backend-engineering`.
 ---
 
 # NestJS Engineering
 
+Apply `software-engineering` and `backend-engineering` first, then this skill for every NestJS change.
 Preserve the installed NestJS version, HTTP adapter, transport, ORM, contract tooling, test stack, and
-repository conventions. Keep the skill self-contained for ordinary NestJS work; add broader engineering
-guidance only when the task actually crosses framework or service boundaries.
+repository conventions.
 
 ## Read Before Work
 

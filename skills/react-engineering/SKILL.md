@@ -1,12 +1,14 @@
 ---
 name: react-engineering
-description: Use for React-specific components, hooks, effects, forms, modals, client state, server-state integration, optimistic updates, TypeScript props, and component refactoring. For Next.js routing, rendering, caching, or RSC behavior, use the Next.js skill instead.
+description: Always use for any React or TypeScript UI work — components, hooks, effects, forms, modals, client state, server-state integration, optimistic updates, props typing, and refactoring. Load it together with `software-engineering` and `frontend-engineering`, and add `nextjs-engineering` for Next.js projects.
 ---
 
 # React Engineering
 
-Preserve the repository's React version, framework integration, component conventions, design system,
-form/modal libraries, and state/data stack. Change only requested or new code unless migration is in scope.
+Apply `software-engineering` and `frontend-engineering` first, then this skill for every React change; add
+`nextjs-engineering` on Next.js projects. Preserve the repository's React version, framework integration,
+component conventions, design system, form/modal libraries, and state/data stack. Change only requested or new
+code unless migration is in scope.
 
 ## Read Before Work
 

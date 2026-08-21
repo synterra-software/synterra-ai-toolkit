@@ -1,13 +1,15 @@
 ---
 name: nextjs-engineering
-description: Use for Next.js-specific App Router or Pages Router work involving RSC, SSR, SSG, ISR, Cache Components/PPR, routing, Server Actions, Route Handlers, metadata, runtimes, deployment, migration, or debugging. Do not activate for framework-agnostic React component work.
+description: Always use for any Next.js work — App Router or Pages Router, RSC, SSR, SSG, ISR, Cache Components/PPR, routing, Server Actions, Route Handlers, metadata, runtimes, deployment, migration, and debugging. Load it together with `software-engineering`, `frontend-engineering`, and `react-engineering`.
 ---
 
 # Next.js Engineering
 
-Preserve the installed Next.js version, router, rendering/cache model, deployment target, and repository
-conventions. Prefer the App Router for new applications, but do not migrate an existing route unless that
-migration is in scope.
+Apply `software-engineering`, `frontend-engineering`, and `react-engineering` first, then this skill for
+every Next.js change; it adds Next.js-specific rendering, caching, routing, and runtime decisions without
+replacing their guidance. Preserve the installed Next.js version, router, rendering/cache model, deployment
+target, and repository conventions. Prefer the App Router for new applications, but do not migrate an existing
+route unless that migration is in scope.
 
 ## Establish the project model first
 

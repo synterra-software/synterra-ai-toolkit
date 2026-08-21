@@ -1,13 +1,14 @@
 ---
 name: frontend-engineering
-description: Use for framework-agnostic or cross-cutting frontend architecture involving the application shell, routing, design system, client state, data access, accessibility, performance, or shared frontend boundaries. Prefer React or Next.js skills for narrow framework-specific implementation.
+description: Always use for any frontend application work — application shell, routing, design system, client state, data access, accessibility, performance, components, or shared frontend boundaries. Load it together with `software-engineering`, and load `react-engineering` and `nextjs-engineering` on top whenever those technologies are involved.
 ---
 
 # Frontend Engineering
 
-Preserve the application's framework, design system, dependency stack, architecture, and repository
-conventions. Use this skill for decisions that cross components or features; use the matching framework
-skill when the work is local to React, Next.js, or another framework.
+Apply `software-engineering` first, then this skill for every frontend change. Preserve the
+application's framework, design system, dependency stack, architecture, and repository conventions. Always
+load the matching framework skill on top when the work touches React, Next.js, or another framework — this
+skill does not replace it.
 
 ## Before Implementation
 

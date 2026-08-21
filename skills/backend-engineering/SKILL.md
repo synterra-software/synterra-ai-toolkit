@@ -1,13 +1,14 @@
 ---
 name: backend-engineering
-description: Use for framework-agnostic or cross-cutting backend architecture involving service boundaries, contracts, persistence, integrations, background work, reliability, or operations. Prefer NestJS or Supabase skills for narrow technology-specific implementation.
+description: Always use for any backend work — services, APIs, workers, integrations, service boundaries, contracts, persistence, migrations, background work, reliability, and operations. Load it together with `software-engineering`, and load `nestjs-engineering` and `supabase-engineering` on top whenever those technologies are involved.
 ---
 
 # Backend Engineering
 
-Preserve the runtime, framework, service boundaries, contracts, data ownership, and deployment model.
-Use this skill for decisions that cross handlers, modules, or services; use the matching technology skill
-when the work is local to NestJS, Supabase, or another backend platform.
+Apply `software-engineering` first, then this skill for every backend change. Preserve the runtime,
+framework, service boundaries, contracts, data ownership, and deployment model. Always load the matching
+technology skill on top when the work touches NestJS, Supabase, or another backend platform — this skill
+does not replace it.
 
 ## Before Implementation
 
