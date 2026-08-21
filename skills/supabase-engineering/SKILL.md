@@ -1,13 +1,13 @@
 ---
 name: supabase-engineering
-description: Use for Supabase-specific Database, Auth, RLS, migrations, generated types, Storage, Realtime, Edge Functions, SSR clients, CLI workflows, local development, deployment, and troubleshooting. Add frontend or backend skills only when work extends beyond the Supabase boundary.
+description: Always use for any Supabase work — Database, Auth, RLS, migrations, generated types, Storage, Realtime, Edge Functions, SSR clients, CLI workflows, local development, deployment, and troubleshooting. Load it together with `software-engineering` and `backend-engineering`, plus the matching frontend skill for browser or framework integration.
 ---
 
 # Supabase Engineering
 
-Preserve the project's existing schema workflow, client boundaries, framework integration, and deployment
-model. For browser or framework integration, inspect the matching framework conventions without loading
-unrelated frontend or backend guidance.
+Apply `software-engineering` and `backend-engineering` first, then this skill for every Supabase change.
+For browser or framework integration, also apply the matching frontend skill. Preserve the project's existing
+schema workflow, client boundaries, framework integration, and deployment model.
 
 ## Read Before Work
 

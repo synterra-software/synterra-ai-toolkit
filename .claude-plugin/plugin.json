@@ -1,7 +1,7 @@
 {
   "name": "synterra-dev",
   "description": "Synterra shared engineering skills for software, frontend, React, Next.js, backend, NestJS, Supabase, and standardized PR descriptions.",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "author": {
     "name": "Synterra Engineering",
     "email": "admin@synterra.software"

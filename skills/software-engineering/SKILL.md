@@ -1,6 +1,6 @@
 ---
 name: software-engineering
-description: Use for cross-cutting software planning, specification, architectural ownership, reuse decisions, refactoring strategy, or verification design. Prefer a more specific framework skill for narrow implementation work that does not require these decisions.
+description: Always use for any software work — planning, specifying, architecting, implementing, refactoring, reviewing, or verifying a change. Load it for every engineering task, then load the matching frontend, backend, and framework skills on top of it.
 ---
 
 # Software Engineering

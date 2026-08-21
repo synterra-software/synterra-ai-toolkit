@@ -1,18 +1,34 @@
 ---
 name: pr-description
-description: Draft or revise a Synterra pull request title and description in the WHAT, CHANGES, optional SCREENSHOTS/NOTES, and Type format. Use when PR description content is requested or another authorized workflow needs a PR body; do not activate for general task summaries or manage branches, commits, pushes, or PR publication.
+description: Always use whenever a pull request is being prepared, opened, updated, or described — including `gh pr create`, `gh pr edit`, opening a PR from the GitHub UI or an IDE, pushing a branch in order to open a PR, or finishing a coding task on a feature branch where a PR is the next step. Run it automatically before any action that creates or edits a pull request, even if the user never says "description" or "template", and use its output as the PR title and body.
 ---
 
 # PR Description
 
 Read git state and produce PR title/body markdown that mirrors `.github/pull_request_template.md`.
 
+## When this runs — automatically, before any PR is created
+
+Run this skill without being asked whenever a pull request is about to exist or change, including:
+
+- `gh pr create`, `gh pr edit`, `gh pr create --fill`, or any wrapper/script around them;
+- "open a PR", "raise a PR", "push and open a PR", "create the pull request", or the same intent in
+  other words;
+- opening a PR from the GitHub web UI, an IDE, or a bot, when the body is being drafted here;
+- finishing work on a feature branch where a pull request is the agreed next step.
+
+Never let a pull request be opened or updated with an ad-hoc body. Produce the title and body here first,
+then use exactly that output for the PR. This applies even when the user never says "description",
+"template", or "PR description".
+
 ## Ownership — content only
 
 - Keep repository inspection read-only. Allowed: `git diff`, `git log`, `git status`, `git branch`, and
   `scripts/changes-table.sh`.
-- Do not create or switch branches, edit product files, stage, commit, push, or publish/edit a remote PR.
-  A separate explicitly authorized GitHub workflow may consume the generated title/body.
+- Do not create or switch branches, edit product files, stage, commit, or push.
+- Do not open or edit a remote PR on this skill's own initiative. When the user has explicitly asked for a
+  PR to be created or updated, supply this title/body to that command (Workflow step 5) instead of
+  blocking it.
 - Don't fix, refactor, or clean up anything in the diff — flag it under NOTES instead.
 
 ## Format — always this exact structure, no placeholders left unfilled
@@ -78,4 +94,13 @@ shared code, or multi-project. Drives approval policy — when unsure, mark subs
    separately for relevant working-tree paths because the script intentionally compares `base...HEAD`.
 3. Draft the title and body per Format and Rules. Preserve user-managed screenshots and notes when revising
    an existing description.
-4. Return the title/body and stop. The title must use the Jira prefix required by CI.
+4. Description-only request → return the title/body and stop. The title must use the Jira prefix required
+   by CI.
+5. A PR-creating or PR-updating action the user explicitly asked for → hand this exact title/body to it via
+   a body file outside the repository:
+   ```bash
+   body="$(mktemp)"
+   # write the drafted body into "$body"
+   gh pr create --title "PROJ-XXX: <concise title>" --body-file "$body"
+   rm -f "$body"
+   ```
