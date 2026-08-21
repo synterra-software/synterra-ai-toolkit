@@ -43,13 +43,15 @@ Format: `<type>/<PROJECT-XXX>-<short-kebab-description>`
 - **`<type>`** — `feature` (new behavior), `bugfix` (defect fix), `hotfix` (urgent production fix), or
   `chore` (config, docs, tooling, dependencies, or refactor with no behavior change). The type comes
   first, before the Jira key.
-- **`<PROJECT-XXX>`** — the same Jira key the Ticket field uses. No key found → ask, don't guess. When the
-  user confirms there is no ticket, drop the key segment: `<type>/<short-kebab-description>`.
+- **`<PROJECT-XXX>`** — the same Jira key the Ticket field uses. Mandatory for `feature`, `bugfix`, and
+  `chore`. No key available → ask and wait; never guess one, never substitute a placeholder, never proceed
+  without it. `hotfix` is the only exemption: `hotfix/<short-kebab-description>` is valid when an urgent
+  production fix has no ticket yet.
 - **`<short-kebab-description>`** — 2–5 lowercase words naming the outcome, hyphen-separated. ASCII only;
   no spaces, underscores, or uppercase; no leading/trailing hyphen; keep the whole name under ~60 chars.
 
 Examples: `feature/PROJ-412-upload-retry`, `bugfix/PROJ-77-null-session-crash`,
-`chore/remove-pr-ui-screenshots`.
+`chore/PROJ-108-bump-node-20`, `hotfix/expired-webhook-cert` (ticketless hotfix).
 
 Create it from the current `HEAD` so uncommitted work carries over:
 
@@ -65,7 +67,7 @@ Before creating, confirm the name is free with `git branch --list <name>` and
 
 ```markdown
 ## WHAT
-- **Ticket:** <PROJECT-XXX — Jira link>
+- **Ticket:** <PROJECT-XXX — Jira link; `none — hotfix` only for a ticketless hotfix>
 - **Design / brainstorm note:** <link, if any — omit line if none>
 - **Summary:** <1–3 sentences: what and why>
 
@@ -86,8 +88,10 @@ Before creating, confirm the name is free with `git branch --list <name>` and
 ## Rules per section
 
 **Ticket** — extract `PROJECT-XXX` from the branch name (see Branch naming) →
-`https://synterrasoftware.atlassian.net/browse/PROJECT-XXX`. No key found → ask, don't guess. Don't fetch
-ticket contents.
+`https://synterrasoftware.atlassian.net/browse/PROJECT-XXX`. Mandatory: no key → ask and wait. Don't guess
+it, don't leave the field blank, don't hand over a title/body without it. The single exemption is a
+`hotfix`, which may ship as `- **Ticket:** none — hotfix`; NOTES must then say why it could not wait and
+which ticket will be filed retroactively. Don't fetch ticket contents.
 
 **Summary** — from diff + user's description; ask if context is missing. For UI changes, remind the
 author to attach screenshots.
@@ -111,23 +115,25 @@ markdown when screenshots are provided.
   ```
 
 **NOTES** — risky areas, follow-ups, migration steps, related issues/PRs (`Closes #123`, `Refs #456`).
-Omit entirely if nothing to flag.
+Required for a ticketless hotfix: the urgency justification and the retroactive ticket. Otherwise omit
+entirely if nothing to flag.
 
 **Type** — trivial: config/copy/docs/isolated fix, no shared/core code. substantial: logic, architecture,
 shared code, or multi-project. Drives approval policy — when unsure, mark substantial.
 
 ## Workflow
 
-1. Resolve the base branch and check the current branch. On the default branch, pick a name per Branch
-   naming and create it before anything else, so later commits do not land on `main`.
+1. Resolve the base branch and check the current branch. On the default branch, resolve the Jira key first
+   — ask and wait for it unless this is a hotfix — then pick a name per Branch naming and create the branch
+   before anything else, so later commits do not land on `main`.
 2. Inspect `git log`, committed diff, staged/unstaged changes, and untracked paths. Do not infer scope from
    branch or commit titles alone.
 3. Use `scripts/changes-table.sh [base]` when a committed substantial diff benefits from a skeleton; account
    separately for relevant working-tree paths because the script intentionally compares `base...HEAD`.
 4. Draft the title and body per Format and Rules. Preserve user-managed screenshots and notes when revising
    an existing description.
-5. Description-only request → return the title/body and stop. The title must use the Jira prefix required
-   by CI.
+5. Description-only request → return the title/body and stop. The title must carry the `PROJ-XXX: ` Jira
+   prefix required by CI; a ticketless hotfix uses `HOTFIX: ` in its place.
 6. A PR-creating or PR-updating action the user explicitly asked for → hand this exact title/body to it via
    a body file outside the repository:
    ```bash

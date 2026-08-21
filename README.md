@@ -13,8 +13,9 @@ branch name, and summarizes the changed files for reviewers. It does not fetch J
 It runs automatically before any action that creates or updates a pull request — `gh pr create`, "open
 a PR", or finishing work on a feature branch — so no PR is opened with an ad-hoc body. When the work is
 still on `main`, it also creates the branch using the team convention
-`<type>/<PROJECT-XXX>-<short-description>` (for example `feature/PROJ-412-upload-retry`). Commits and
-pushes stay outside the skill.
+`<type>/<PROJECT-XXX>-<short-description>` (for example `feature/PROJ-412-upload-retry`). The Jira key is
+mandatory — the skill asks for it rather than guessing — and only a `hotfix` may ship without one. Commits
+and pushes stay outside the skill.
 
 - **Codex:** `$pr-description Create a PR description for my current branch`
 - **Claude Code:** `/pr-description Create a PR description for my current branch`
