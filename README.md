@@ -85,7 +85,18 @@ the active Supabase product or workflow.
 - **Codex:** `$supabase-engineering Implement this Supabase change`
 - **Claude Code:** `/supabase-engineering Implement this Supabase change`
 
-All eight skills activate automatically whenever a request falls in their area, and they stack rather
+### `qa-test-plan`
+
+Writes a QA test plan for a Jira ticket and its PR that a tester can run on stage without reading code.
+It reads the ticket and the PR diff first, so expected results match what the code actually does, then
+produces preconditions, one shared test fixture, a test-case table with a Pass/Fail status column, and an
+explicit out-of-scope list that prevents false Fails. The plan is written in Ukrainian unless you ask for
+another language. Posting it to Jira with screenshots happens only after you confirm.
+
+- **Codex:** `$qa-test-plan Write a test plan for PROJ-123`
+- **Claude Code:** `/qa-test-plan Write a test plan for PROJ-123`
+
+All nine skills activate automatically whenever a request falls in their area, and they stack rather
 than compete: `software-engineering` applies to every change, the frontend or backend skill applies to
 its side of the stack, and the framework skills apply on top. Explicit invocation is useful when you want
 to guarantee that a particular workflow is loaded.
@@ -156,6 +167,7 @@ synterra-ai-toolkit/
 ├── .codex-plugin/         # Codex plugin manifest
 └── skills/
     ├── pr-description/
+    ├── qa-test-plan/
     ├── software-engineering/
     ├── frontend-engineering/
     ├── react-engineering/

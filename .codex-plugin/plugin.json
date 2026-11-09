@@ -1,7 +1,7 @@
 {
   "name": "synterra-dev",
-  "version": "0.5.3",
-  "description": "Synterra shared engineering skills for software, frontend, React, Next.js, backend, NestJS, Supabase, and pull request workflows.",
+  "version": "0.6.0",
+  "description": "Synterra shared engineering skills for software, frontend, React, Next.js, backend, NestJS, Supabase, pull request workflows, and QA test plans.",
   "author": {
     "name": "Synterra Engineering",
     "email": "admin@synterra.software",
@@ -17,13 +17,14 @@
     "backend",
     "nestjs",
     "supabase",
-    "pull-request"
+    "pull-request",
+    "qa"
   ],
   "skills": "./skills/",
   "interface": {
     "displayName": "Synterra Dev",
     "shortDescription": "Shared engineering workflows and framework guidance",
-    "longDescription": "Use Synterra's shared skills for software architecture, frontend and backend engineering, React, Next.js, NestJS, Supabase, and standardized pull request descriptions.",
+    "longDescription": "Use Synterra's shared skills for software architecture, frontend and backend engineering, React, Next.js, NestJS, Supabase, standardized pull request descriptions, and QA test plans for testers.",
     "developerName": "Synterra Engineering",
     "category": "Developer Tools",
     "capabilities": [
@@ -34,7 +35,8 @@
     "defaultPrompt": [
       "Plan and implement this change using Synterra engineering standards",
       "Review this code using the most specific Synterra skill",
-      "Create a Synterra pull request description for this branch"
+      "Create a Synterra pull request description for this branch",
+      "Write a QA test plan for this ticket"
     ],
     "brandColor": "#5B5BD6"
   }
