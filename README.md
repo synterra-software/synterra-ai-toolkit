@@ -87,19 +87,24 @@ the active Supabase product or workflow.
 
 ### `pr-review`
 
-Reviews the half of a pull request that a diff-level bug scan cannot reach, in any language or stack:
-whether each acceptance criterion is actually met, whether the API contract matches the schema or the
-provider that defines it, whether a new util or component duplicates one that already exists, and
-whether the project's own rules are followed. It deliberately leaves crashes, unhandled states,
-boundary values and test depth to `/code-review`, and says in the report whether that sweep was run —
-the two are meant to be used together. It discovers the project's rules files, destination branch and
-test commands instead of assuming a layout, follows changed symbols out to consumers the diff never
-touches, and verifies each candidate finding against the code before reporting it. The report leads
-with a merge verdict and severities (blocker / major / minor). It is read-only: it changes nothing,
-posts nothing, and fixes happen only after you accept them.
+Reviews a teammate's open pull request — or your own branch before you push — covering the half a
+diff-level bug scan cannot reach, in any language or stack: whether each acceptance criterion from the
+Jira ticket is actually met, whether the API contract matches the schema or the provider that defines
+it, whether a new util or component duplicates one that already exists, and whether the project's own
+rules are followed. It deliberately leaves crashes, unhandled states, boundary values and test depth to
+`/code-review`, and says in the report whether that sweep was run — the two are meant to be used
+together. It reads someone else's PR without checking it out, discovers the project's rules files,
+destination branch and test commands instead of assuming a layout, follows changed symbols out to
+consumers the diff never touches, and verifies each candidate finding against the code before
+reporting it. The report leads with a merge verdict and severities (blocker / major / minor).
 
-- **Codex:** `$pr-review Review PR 123`
-- **Claude Code:** `/pr-review Review PR 123`
+Ask it to post, and the findings go on the PR as inline comments plus one summary — **from your own
+GitHub account**, after you have seen the exact text, always as plain comments and never as an approval
+or a change request. It never edits code, never checks out the branch, and never touches anyone else's
+comment.
+
+- **Codex:** `$pr-review Review PR 123 and leave the findings as comments`
+- **Claude Code:** `/pr-review Review PR 123 and leave the findings as comments`
 
 ### `qa-test-plan`
 
