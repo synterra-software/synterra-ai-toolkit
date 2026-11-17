@@ -86,20 +86,38 @@ ls -d "$root"/.cursor/rules "$root"/.github 2>/dev/null
 
 ## 1. Requirements — the part no diff scan can infer
 
-1. **The ticket** — description and acceptance criteria. Get the key from the
-   user, the branch name, or the PR title.
+1. **The ticket — read the issue description; that is where the acceptance
+   criteria live.** Get the key from the user, the branch name, or the PR
+   title, then open the issue itself in Jira, with whatever this session has:
+   the Atlassian MCP (`getJiraIssue`), otherwise `jira issue view <KEY>`,
+   otherwise `GET /rest/api/3/issue/<KEY>?fields=summary,description,issuelinks,attachment,comment`.
+   Take the Jira site and cloud id from the project rules found in step 0 —
+   never guess them.
+   The criteria are **a section inside the description field**, not a field of
+   their own: a heading such as "Acceptance criteria", "AC" or "Критерії
+   приймання", a checklist, numbered lines, "should" / "має" sentences, or
+   Given/When/Then blocks. Read the whole description, never the summary alone,
+   and treat its plain statements as the criteria when no such section exists.
+   Criteria also hide in attachments (a screenshot that defines the expected
+   look), in a linked spec page, and in comments that corrected the scope after
+   the ticket was written — read the comments before concluding a criterion is
+   absent.
 2. **Linked issues** — related tickets on the other side of the boundary, the
    epic, siblings. A counterpart ticket usually defines the fields, pagination
    and flags this change must match; skipping it is the most common cause of a
    missed contract bug.
-3. **Cross-check each acceptance criterion against the code**, naming the file
-   that satisfies it. Criteria met by nothing are the first findings of the
-   review.
+3. **Cross-check each acceptance criterion against the code.** Enumerate the
+   criteria from the description as you found them, **quote each one in the
+   reviewer's own line**, and name the file that satisfies it. Quoting keeps a
+   criterion from being paraphrased into something the code happens to do.
+   Criteria met by nothing are the first findings of the review.
 4. **Behaviour nobody asked for** — scope the ticket does not cover, flags
    flipped, copy changed, defaults moved.
-5. No tracker access, or no ticket at all → say so at the top of the report and
-   review structure and contract only. Never present requirements as verified
-   when they were not read.
+5. No Jira access, no key, or a ticket with nothing in the description → say so
+   on the `Requirements:` line and review structure and contract only. Never
+   present acceptance criteria as checked when the description was not read,
+   and never reconstruct them from the diff, the branch name or the PR body:
+   that turns the change into its own specification.
 
 ## 2. The change — read it for reach, not for bugs
 
@@ -197,7 +215,7 @@ Lead with the verdict:
 ```
 Verdict: fix before merge — <n> (<b> blocker, <m> major) · minor <k>
      or: ready to merge · minor <k>
-Requirements: <ticket + linked tickets read | no tracker access>
+Requirements: <KEY description read, N criteria + linked tickets | no Jira access>
 Contract: checked against <source> | not needed | unverified (<reason>)
 Scan: /code-review <level> findings reviewed | declined by user | not run
 Checks: <test command> pass/fail · <typecheck> pass/fail · <not run: reason>
