@@ -18,8 +18,10 @@ look for one whose head branch or title contains the key
 
 1. **Ticket** — read the Jira issue: description, acceptance criteria,
    attachments (screenshots often define the expected look).
-2. **Diff** — read the PR diff (`gh pr diff <n>` or `git diff <base>...HEAD`).
-   From the code, establish:
+2. **Diff and PR description** — read the PR diff (`gh pr diff <n>` or
+   `git diff <base>...HEAD`) and the PR body (`gh pr view <n> --json body`).
+   Screenshots in the description show the intended result, so collect their
+   URLs and note which state each one shows. From the code, establish:
    - where the feature shows up: which roles, pages, public or anonymous
      flows, preview vs editor modes;
    - exact user-facing strings for every supported locale, from the project's
@@ -93,9 +95,12 @@ IDs are `TC-01`, `TC-02`, …
 - Create the plan as a shared document when a docs connector is available,
   so the Status column can be filled in place. Otherwise write Markdown and
   show it to the user.
-- Capture two or three screenshots of the key states (feature shown, feature
-  not shown, mobile width) from a running build. A local dev server with
-  mocked data is fine.
+- **Reuse screenshots that already exist.** If the PR description or the
+  ticket shows the feature, use those images and say which state each one is;
+  do not retake them.
+- Capture the key states they leave uncovered (feature shown, feature not
+  shown, mobile width) from a running build — two or three in total across
+  both sources. A local dev server with mocked data is fine.
 - **Ask before posting anywhere.** On the user's yes, add the plan as a comment
   on the Jira ticket with the screenshots inline. Jira may reorder pasted
   images, so check the posted comment and make the captions match the real
