@@ -85,6 +85,22 @@ the active Supabase product or workflow.
 - **Codex:** `$supabase-engineering Implement this Supabase change`
 - **Claude Code:** `/supabase-engineering Implement this Supabase change`
 
+### `pr-review`
+
+Reviews the half of a pull request that a diff-level bug scan cannot reach, in any language or stack:
+whether each acceptance criterion is actually met, whether the API contract matches the schema or the
+provider that defines it, whether a new util or component duplicates one that already exists, and
+whether the project's own rules are followed. It deliberately leaves crashes, unhandled states,
+boundary values and test depth to `/code-review`, and says in the report whether that sweep was run —
+the two are meant to be used together. It discovers the project's rules files, destination branch and
+test commands instead of assuming a layout, follows changed symbols out to consumers the diff never
+touches, and verifies each candidate finding against the code before reporting it. The report leads
+with a merge verdict and severities (blocker / major / minor). It is read-only: it changes nothing,
+posts nothing, and fixes happen only after you accept them.
+
+- **Codex:** `$pr-review Review PR 123`
+- **Claude Code:** `/pr-review Review PR 123`
+
 ### `qa-test-plan`
 
 Writes a QA test plan for a Jira ticket and its PR that a tester can run on stage without reading code.
@@ -96,7 +112,7 @@ another language. Posting it to Jira with screenshots happens only after you con
 - **Codex:** `$qa-test-plan Write a test plan for PROJ-123`
 - **Claude Code:** `/qa-test-plan Write a test plan for PROJ-123`
 
-All nine skills activate automatically whenever a request falls in their area, and they stack rather
+All ten skills activate automatically whenever a request falls in their area, and they stack rather
 than compete: `software-engineering` applies to every change, the frontend or backend skill applies to
 its side of the stack, and the framework skills apply on top. Explicit invocation is useful when you want
 to guarantee that a particular workflow is loaded.
@@ -167,6 +183,7 @@ synterra-ai-toolkit/
 ├── .codex-plugin/         # Codex plugin manifest
 └── skills/
     ├── pr-description/
+    ├── pr-review/
     ├── qa-test-plan/
     ├── software-engineering/
     ├── frontend-engineering/
