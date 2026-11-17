@@ -302,11 +302,16 @@ account, so they see it before GitHub does.
    ```
 
    `event` is always `COMMENT`. Never `APPROVE`, never `REQUEST_CHANGES`.
-4. **A line outside the diff cannot carry a comment** — the API rejects it with
-   422. Findings in consumers the PR never touched, missing acceptance criteria
-   and contract mismatches on the provider's side belong in the **summary
-   body**, with `file:line` written out so the author can navigate. Do not move
-   the anchor to a nearby changed line to force it through.
+4. **A line outside the diff cannot carry a comment, and the call is
+   all-or-nothing.** One unanchorable comment rejects the whole review —
+   `422 Unprocessable Entity · "Path could not be resolved"` — and nothing is
+   posted, so check every anchor against the diff's hunk ranges before sending:
+   the file must be in `gh pr view <n> --json files`, and `line` is its
+   **new-file** number with `side: "RIGHT"`. Findings in consumers the PR never
+   touched, missing acceptance criteria and contract mismatches on the
+   provider's side belong in the **summary body** instead, with `file:line`
+   written out so the author can navigate. Never move an anchor to a nearby
+   changed line to force it through.
 5. **Comment body** — the report's wording, unchanged: severity and title,
    the failure scenario, the fix. End each with a single marker line so the
    next pass can recognise it and the author knows how it was produced:
